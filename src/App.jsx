@@ -1,7 +1,23 @@
+import { Routes, Route, NavLink } from "react-router";
+import Home from "./components/Home.jsx";
+import Project from "./components/Project.jsx";
+
 function App() {
   return (
     <>
-      <h1 className="text-2xl">Clara Bunge</h1>
+      <header className="fixed inset-0 z-20 flex h-min w-full items-center justify-between px-4 py-2 uppercase">
+        <NavLink to="/">
+          <h1 className="">Clara Bunge</h1>
+        </NavLink>
+        <nav className="flex gap-2">
+          <a className="">About</a>
+          <button className="text-white/50">EN</button>
+        </nav>
+      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/project" element={<Project />} />
+      </Routes>
     </>
   );
 }
