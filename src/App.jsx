@@ -5,7 +5,7 @@ import Project from "./components/Project.jsx";
 function App() {
   return (
     <>
-      <header className="fixed inset-0 z-20 flex h-min w-full items-center justify-between px-4 py-2 uppercase">
+      <header className="fixed inset-0 z-20 flex h-min w-full items-center justify-between px-4 py-2 font-[Nimbus-Bold] text-4xl uppercase">
         <NavLink to="/">
           <h1 className="">Clara Bunge</h1>
         </NavLink>

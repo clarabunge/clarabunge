@@ -1,6 +1,28 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Nimbus-Reg";
+  src: url("/fonts/NimbusSanL-Regu.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Nimbus-Bold";
+  src: url("/fonts/NimbusSanL-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Nimbus-RegItal";
+  src: url("/fonts/NimbusSanL-ReguItal.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Mplus";
+  src: url("/fonts/mplus-1m-light.otf") format("opentype");
+}
+
 :root {
   background-color: black;
   color: white;
+
+  font-family: "Nimbus-Reg", sans-serif;
 }

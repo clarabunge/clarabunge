@@ -4,14 +4,12 @@ export default function Project() {
       <div className="py-16">
         <VideoPlayer />
       </div>
-      <div className="flex justify-between">
-        <h2 className="text-4xl">YA PASO - Gregorio</h2>
-        <div className="text-end">
-          <div>Music Video</div>
-          <div>2024</div>
-        </div>
+      <h2 className="font-[Nimbus-Bold] text-4xl">YA PASO - Gregorio</h2>
+      <div className="pt-2 font-[Mplus] text-xs">
+        <div>Music Video</div>
+        <div>2024</div>
       </div>
-      <div className="py-16">
+      <div className="py-8">
         “Ya Paso” delves into themes of self-discovery, passion, and the passage
         of time. The story follows a young man at a career crossroads, torn
         between the stability of a corporate job and the childhood passion that
@@ -19,7 +17,7 @@ export default function Project() {
         must choose between following convention or embracing the path his heart
         truly desires, roller hockey.
       </div>
-      <div className="text-end">
+      <div className="text-end font-[Mplus] text-xs">
         <div>Buenos Aires, Argentina</div>
         <div>{`34°36′14″S 58°22′54″O`}</div>
       </div>

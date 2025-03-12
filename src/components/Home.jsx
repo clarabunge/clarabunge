@@ -4,9 +4,9 @@ export default function Home() {
   const videos = ["1047919336", "1047919663", "1011376077"];
   return (
     <>
-      <VideoCentered videoId={videos[2]} />
+      <VideoCentered videoId={videos[1]} />
       {/* <VideoFullscreen videoId={videos[1]} /> */}
-      <div className="flex h-screen w-full flex-col justify-center p-4 text-xs">
+      <div className="flex h-screen w-full flex-col justify-center p-4 font-[Mplus] text-xs">
         <NavLink to="/project">
           <div className="grid w-full grid-cols-4">
             <h2>YA PASO - Gregorio</h2>
