@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import LanguageButton from "./LanguageButton.jsx";
 
 export default function Header() {
   return (
@@ -13,7 +14,7 @@ export default function Header() {
       </NavLink>
       <nav className="flex gap-2">
         <a className="">?</a>
-        <button className="text-white/50">EN</button>
+        <LanguageButton />
       </nav>
     </header>
   );
