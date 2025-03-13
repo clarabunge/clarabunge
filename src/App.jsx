@@ -1,19 +1,12 @@
-import { Routes, Route, NavLink } from "react-router";
+import { Routes, Route } from "react-router";
+import Header from "./components/Header.jsx";
 import Home from "./components/Home.jsx";
 import Project from "./components/Project.jsx";
 
 function App() {
   return (
     <>
-      <header className="fixed inset-0 z-20 flex h-min w-full items-center justify-between px-4 py-2 font-[Nimbus-Bold] text-4xl uppercase">
-        <NavLink to="/">
-          <h1 className="">Clara Bunge</h1>
-        </NavLink>
-        <nav className="flex gap-2">
-          <a className="">About</a>
-          <button className="text-white/50">EN</button>
-        </nav>
-      </header>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/project" element={<Project />} />
