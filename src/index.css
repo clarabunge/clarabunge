@@ -20,6 +20,16 @@
   src: url("/fonts/mplus-1m-light.otf") format("opentype");
 }
 
+@font-face {
+  font-family: "Nimbus-Cond";
+  src: url("/fonts/NimbusSanL-ReguCond.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Nimbus-CondItal";
+  src: url("/fonts/NimbusSanL-ReguCondItal.ttf") format("truetype");
+}
+
 :root {
   background-color: black;
   color: white;
