@@ -20,7 +20,7 @@ export default function ImageGallery({ slug }) {
   if (!data.images) return null;
 
   return (
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-3 gap-2 py-16">
       {data.images.map((image) => (
         <img
           key={image._key}
