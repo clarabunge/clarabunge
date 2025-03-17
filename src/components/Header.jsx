@@ -21,7 +21,7 @@ export default function Header({ infoIsOpen, setInfoIsOpen }) {
       </NavLink>
       <nav className="flex gap-2">
         <button
-          className="cursor-pointer"
+          className="cursor-pointer uppercase"
           onClick={() => setInfoIsOpen((prev) => !prev)}
         >
           {infoIsOpen ? close[language] : "info"}
