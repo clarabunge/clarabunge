@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
 
-export default function VimeoBakcground({ videoId }) {
+export default function VimeoBackground({
+  videoId,
+  hidden = true,
+  handleOnLoad,
+}) {
   const [isLoaded, setIsLoaded] = useState(false);
   const iframeRef = useRef(null);
 
@@ -10,10 +14,8 @@ export default function VimeoBakcground({ videoId }) {
 
     const handleMessage = (event) => {
       if (!event.origin.includes("vimeo.com")) return;
-
       try {
         const data = JSON.parse(event.data);
-
         if (data.event === "ready") {
           setTimeout(() => setIsLoaded(true), 1000);
         }
@@ -25,13 +27,11 @@ export default function VimeoBakcground({ videoId }) {
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
   }, [videoId]);
+
   return (
-    <div className="absolute inset-0 -z-10 h-screen w-full bg-black/30">
-      {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="h-12 w-12 animate-spin rounded-full border border-white/40 border-t-transparent"></div>
-        </div>
-      )}
+    <div
+      className={`absolute inset-0 -z-10 h-screen w-full bg-black/30 ${hidden ? "hidden" : ""}`}
+    >
       <div
         style={{
           padding: "0",
@@ -62,6 +62,7 @@ export default function VimeoBakcground({ videoId }) {
           animate={{ opacity: isLoaded ? 1 : 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           title={videoId}
+          onLoad={handleOnLoad}
         ></motion.iframe>
       </div>
     </div>
