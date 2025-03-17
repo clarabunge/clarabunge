@@ -20,12 +20,13 @@ export default function ImageGallery({ slug }) {
   if (!data.images) return null;
 
   return (
-    <div className="grid grid-cols-3 gap-2 py-16">
+    <div className="columns-[14rem] gap-2 lg:columns-2xs">
       {data.images.map((image) => (
         <img
           key={image._key}
           src={image.url + "?h=500&fm=webp"}
           alt={image.alt}
+          className="w-full pb-2"
         />
       ))}
     </div>
