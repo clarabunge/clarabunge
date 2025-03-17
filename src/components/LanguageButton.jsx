@@ -5,7 +5,7 @@ export default function LanguageButton() {
 
   return (
     <button
-      className="text-white/50"
+      className="cursor-pointer text-white/50"
       onClick={() => setLanguage(language === "es" ? "en" : "es")}
     >
       {language === "en" ? "ES" : "EN"}
