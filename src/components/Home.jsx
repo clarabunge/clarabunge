@@ -88,12 +88,12 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="flex h-screen w-full flex-col justify-end p-4 font-[Nimbus-Cond] text-xs">
+      <div className="flex h-screen w-full flex-col justify-end p-8 font-[Nimbus-Cond] text-xs">
         {videos.map((video, index) => (
           <NavLink
             to="/project"
             key={video.id}
-            className="grid w-full grid-cols-4 hover:bg-white/10 hover:font-[Nimbus-CondItal]"
+            className="grid w-full grid-cols-4 border-b border-transparent hover:border-white"
             onMouseEnter={() => {
               setIsHovering(true);
               handleVideoSelect(video, index);
@@ -105,7 +105,13 @@ export default function Home() {
             <div className="">
               {currentVideo.id === video.id ? video.coordinates : ""}
             </div>
-            <h2>{video.title}</h2>
+            <h2
+              className={
+                currentVideo.id === video.id ? "opacity-100" : "opacity-70"
+              }
+            >
+              {video.title}
+            </h2>
             <div className="">
               {currentVideo.id === video.id ? video.year : ""}
             </div>
