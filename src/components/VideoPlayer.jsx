@@ -5,7 +5,7 @@ export default function VideoPlayer({ videoUrl }) {
   return (
     <div className="relative h-[90%] w-[90%] overflow-hidden">
       <iframe
-        src={`https://player.vimeo.com/video/${vimeoId}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;transparent=0`}
+        src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479&transparent=1&autoplay=1`}
         frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
         style={{
