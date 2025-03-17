@@ -8,7 +8,7 @@ export default function LanguageButton() {
       className="text-white/50"
       onClick={() => setLanguage(language === "es" ? "en" : "es")}
     >
-      {language === "en" ? "EN" : "ES"}
+      {language === "en" ? "ES" : "EN"}
     </button>
   );
 }
