@@ -15,9 +15,17 @@ export default function Info() {
         {data?.about?.contact && (
           <div className="my-8 text-xl text-white/70 uppercase">
             <a href={`mailto:${data?.about?.contact.email}`}>
-              {data?.about?.contact.email}
+              {data.about.contact.email}
             </a>
-            <div>{data?.about?.contact.phone}</div>
+            {data.about.contact.phone && <div>{data.about.contact.phone}</div>}
+            {data.about.contact.instagram && (
+              <a
+                href={`https://instagram.com/${data.about.contact.instagram}`}
+                target="_blank"
+              >
+                instagram
+              </a>
+            )}
           </div>
         )}
       </div>
