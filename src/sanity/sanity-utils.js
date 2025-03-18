@@ -15,6 +15,7 @@ export async function getMainContent() {
         typeOfProject->{_id, type},
         image{'url': asset->url,}, 
         videoUrl,
+        isTrailer,
         previewUrl,
         description, 
         location,
