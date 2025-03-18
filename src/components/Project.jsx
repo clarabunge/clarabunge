@@ -63,7 +63,7 @@ export default function Project() {
             </div>
 
             <h2 className="text-2xl uppercase">
-              Creo en el tiempo como en una margarita
+              {projectData?.title?.[language] || projectData?.title?.es}
             </h2>
 
             <div
@@ -76,7 +76,7 @@ export default function Project() {
                 className="rounded-md"
               />
               <div className="absolute top-1/2 left-1/2 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black text-center font-[Nimbus-Cond] leading-none opacity-0 transition-opacity group-hover:opacity-100">
-                PLAY
+                {projectData?.isTrailer ? "TRAILER" : "PLAY"}
               </div>
             </div>
 
