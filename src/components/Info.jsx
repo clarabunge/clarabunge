@@ -28,7 +28,22 @@ export default function Info() {
             )}
           </div>
         )}
+        {data?.about?.cv?.asset?.url && (
+          <a
+            href={data?.about?.cv?.asset?.url}
+            target="_blank"
+            className="text-xl text-white/70 underline"
+          >
+            CV
+          </a>
+        )}
       </div>
+      {/* {data?.about?.image?.url && (
+        <img
+          src={data?.about?.image?.url + "?h=500&fm=webp"}
+          alt="Clara Bunge"
+        />
+      )} */}
     </div>
   );
 }
