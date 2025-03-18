@@ -31,7 +31,7 @@ function App() {
       <Header infoIsOpen={infoIsOpen} setInfoIsOpen={setInfoIsOpen} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/project" element={<Project />} />
+        <Route path="/:slug" element={<Project />} />
       </Routes>
       {infoIsOpen && <Info />}
     </>

@@ -5,13 +5,13 @@ import ImageGallery from "./ImageGallery";
 import { PortableText } from "@portabletext/react";
 import useLanguage from "../utils/useLanguage";
 import { AnimatePresence, motion } from "motion/react";
-
-const SLUG = "ya-paso-gregorio";
+import { useParams } from "react-router";
 
 export default function Project() {
   const [playerIsOpen, setPlayerIsOpen] = useState(false);
   const { data, isLoading } = useMainContent();
   const { language } = useLanguage();
+  const { slug } = useParams();
 
   if (isLoading) {
     return (
@@ -22,7 +22,7 @@ export default function Project() {
   }
 
   const projectData = data?.projects?.find(
-    (project) => project.slug.current === SLUG,
+    (project) => project.slug.current === slug,
   );
 
   return (

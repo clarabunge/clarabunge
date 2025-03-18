@@ -67,7 +67,7 @@ export default function Home() {
       <div className="flex h-screen w-full flex-col justify-end p-8 font-[Nimbus-Cond] text-xs">
         {data.projects?.map((video, index) => (
           <NavLink
-            to="/project"
+            to={video.slug.current}
             key={video._id}
             className="grid w-full grid-cols-4 border-b border-transparent hover:border-white"
             onMouseEnter={() => {
