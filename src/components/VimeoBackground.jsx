@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from "react";
+import { getVimeoId } from "../utils/getVimeoId";
 import { motion } from "motion/react";
 
 export default function VimeoBackground({
-  videoId,
+  videoUrl,
   hidden = true,
   handleOnLoad,
 }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const iframeRef = useRef(null);
+  const vimeoId = getVimeoId(videoUrl);
 
   useEffect(() => {
     setIsLoaded(false);
@@ -26,7 +28,7 @@ export default function VimeoBackground({
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [videoId]);
+  }, [vimeoId]);
 
   return (
     <div
@@ -44,7 +46,7 @@ export default function VimeoBackground({
       >
         <motion.iframe
           ref={iframeRef}
-          src={`https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1`}
+          src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1`}
           frameBorder="0"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
           style={{
@@ -61,7 +63,7 @@ export default function VimeoBackground({
           initial={{ opacity: 0 }}
           animate={{ opacity: isLoaded ? 1 : 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          title={videoId}
+          title={vimeoId}
           onLoad={handleOnLoad}
         ></motion.iframe>
       </div>
