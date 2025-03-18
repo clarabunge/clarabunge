@@ -6,7 +6,11 @@ export async function getIntroUrl() {
 
 export async function getMainContent() {
   return client.fetch(`{
-    'about': *[_type == 'about'][0]{bio, contact},
+    'about': *[_type == 'about'][0]{
+        bio, 
+        contact, 
+        cv{asset->{url}},
+        image{'url': asset->url}},
     'projects': *[_type == 'project']{
         _id, 
         title, 
