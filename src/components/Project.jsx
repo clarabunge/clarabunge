@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useMainContent } from "../utils/useData";
 import VideoPlayer from "./VideoPlayer";
 import ImageGallery from "./ImageGallery";
@@ -8,7 +7,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { useParams } from "react-router";
 
 export default function Project() {
-  const [playerIsOpen, setPlayerIsOpen] = useState(false);
   const { data, isLoading } = useMainContent();
   const { language } = useLanguage();
   const { slug } = useParams();
@@ -27,24 +25,6 @@ export default function Project() {
 
   return (
     <>
-      <AnimatePresence>
-        {playerIsOpen && (
-          <motion.div
-            className="fixed top-0 left-0 z-100 flex h-screen w-full items-center justify-center bg-black"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <button
-              className="absolute top-2 right-4 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black p-2 font-[Nimbus-Cond] text-sm text-white uppercase"
-              onClick={() => setPlayerIsOpen(false)}
-            >
-              close
-            </button>
-            <VideoPlayer videoUrl={projectData?.videoUrl} />
-          </motion.div>
-        )}
-      </AnimatePresence>
       <AnimatePresence>
         <motion.section
           className="flex flex-col gap-8 px-4 py-32 pb-8 text-sm"
@@ -66,18 +46,8 @@ export default function Project() {
               {projectData?.title?.[language] || projectData?.title?.es}
             </h2>
 
-            <div
-              className="group relative cursor-pointer"
-              onClick={() => setPlayerIsOpen(true)}
-            >
-              <img
-                src={projectData?.image?.url + "?h=1080&fm=webp"}
-                alt=""
-                className="rounded-md"
-              />
-              <div className="absolute top-1/2 left-1/2 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black text-center font-[Nimbus-Cond] leading-none opacity-0 transition-opacity group-hover:opacity-100">
-                {projectData?.isTrailer ? "TRAILER" : "PLAY"}
-              </div>
+            <div className="group relative h-[200px] w-full lg:h-[500px]">
+              <VideoPlayer videoUrl={projectData?.videoUrl} />
             </div>
 
             <div className="opacity-70">
