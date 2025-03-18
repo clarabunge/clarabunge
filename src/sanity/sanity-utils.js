@@ -20,6 +20,7 @@ export async function getMainContent() {
         description, 
         location,
         links,
+        acknowledgements[]{_key, image{'url': asset->url,}, link},
     },
   }`);
 }
