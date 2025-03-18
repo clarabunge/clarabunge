@@ -93,6 +93,31 @@ export default function Project() {
               <PortableText value={projectData?.description?.[language]} />
             </div>
 
+            {projectData?.acknowledgements && (
+              <div className="col-span-2 col-start-2 flex items-center justify-center gap-4 py-16">
+                {projectData.acknowledgements.map((acknowledgement) => (
+                  <div key={acknowledgement._key}>
+                    {acknowledgement.link ? (
+                      <a href={acknowledgement.link} target="_blank">
+                        {" "}
+                        <img
+                          src={acknowledgement.image.url + "?w20&fm=webp"}
+                          alt=""
+                          className="max-w-[200px] bg-white"
+                        />
+                      </a>
+                    ) : (
+                      <img
+                        src={acknowledgement.image.url + "?h=500&fm=webp"}
+                        alt=""
+                        className="max-w-[300px] bg-white"
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
             <div className="col-span-2 col-start-2">
               <ImageGallery slug={projectData?.slug?.current} />
             </div>
