@@ -30,6 +30,11 @@
   src: url("/fonts/NimbusSanL-ReguCondItal.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "display";
+  src: url("/public/fonts/Isenheim_Fin.otf");
+}
+
 :root {
   background-color: black;
   color: white;
