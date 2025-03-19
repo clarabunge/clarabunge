@@ -27,7 +27,7 @@ export default function Project() {
     <>
       <AnimatePresence>
         <motion.section
-          className="flex flex-col gap-8 px-8 py-32 text-sm"
+          className="flex flex-col gap-8 bg-black px-8 py-32 text-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
