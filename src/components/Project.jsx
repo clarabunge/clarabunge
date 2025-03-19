@@ -27,44 +27,57 @@ export default function Project() {
     <>
       <AnimatePresence>
         <motion.section
-          className="flex flex-col gap-8 px-4 py-32 pb-8 text-sm"
+          className="flex flex-col gap-8 px-8 py-32 text-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div className="grid grid-cols-[1fr_1fr_3fr_1fr] gap-8">
-            <div className="text-end opacity-70">
-              <div className="font-[Nimbus-Cond]">
-                {projectData?.typeOfProject?.type?.[language]}
+          <div className="grid grid-cols-6 gap-x-8 gap-y-16">
+            <div className="text-end font-[Nimbus-Cond] opacity-70">
+              <div className="">
+                {projectData?.typeOfProject?.type?.[language] ?? "-"}
               </div>
-              <div className="font-[Nimbus-Cond]">
-                {projectData?.date?.split("-")[0]}
-              </div>
+              <div>{projectData?.date.slice(0, 4) ?? "-"}</div>
             </div>
 
-            <h2 className="text-2xl uppercase">
-              {projectData?.title?.[language] || projectData?.title?.es}
-            </h2>
-
-            <div className="group relative h-[200px] w-full lg:h-[500px]">
+            <div className="group relative col-span-4 w-full overflow-hidden rounded-md">
               <VideoPlayer videoUrl={projectData?.videoUrl} />
             </div>
 
-            <div className="opacity-70">
-              <div className="col-start-2 font-[Nimbus-Cond]">
-                {projectData?.location?.city}, {projectData?.location?.country}
+            <div className="">
+              <div className="col-start-2 font-[Nimbus-Cond] opacity-70">
+                {projectData?.location?.city ?? "-"},{" "}
+                {projectData?.location?.country ?? "-"}
               </div>
-              <div className="font-[Nimbus-Cond]">
-                {projectData?.location?.coordinates}
+              <div className="font-[Nimbus-Cond] opacity-70">
+                {projectData?.location?.coordinates ?? "-"}
               </div>
+              {projectData?.links && (
+                <ul className="">
+                  <li className="pt-8 font-[Nimbus-Cond] text-xs opacity-70">
+                    LINKS
+                  </li>
+                  {projectData.links.map((link) => (
+                    <li key={link._key}>
+                      <a href={link.url} target="_blank">
+                        {link.title[language]}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
 
-            <div className="col-span-2 col-start-2 flex flex-col gap-4 py-16">
+            <h2 className="col-span-5 col-start-2 font-[display] text-5xl">
+              {projectData?.title?.[language] || projectData?.title?.es}
+            </h2>
+
+            <div className="col-span-3 col-start-3 flex flex-col gap-4 py-8 text-lg">
               <PortableText value={projectData?.description?.[language]} />
             </div>
 
             {projectData?.acknowledgements && (
-              <div className="col-span-2 col-start-2 flex items-center justify-center gap-4 py-16">
+              <div className="col-span-4 col-start-2 flex items-center justify-center gap-4">
                 {projectData.acknowledgements.map((acknowledgement) => (
                   <div key={acknowledgement._key}>
                     {acknowledgement.link ? (
@@ -73,7 +86,7 @@ export default function Project() {
                         <img
                           src={acknowledgement.image.url + "?w20&fm=webp"}
                           alt=""
-                          className="max-w-[200px] bg-white"
+                          className="max-w-[150px] bg-white"
                         />
                       </a>
                     ) : (
@@ -88,24 +101,23 @@ export default function Project() {
               </div>
             )}
 
-            <div className="col-span-2 col-start-2">
+            <div className="col-span-6 col-start-1">
               <ImageGallery slug={projectData?.slug?.current} />
             </div>
+
+            {projectData?.credits && (
+              <div className="col-span-3 col-start-3 flex flex-col gap-4">
+                {projectData.credits.map((credit) => (
+                  <div key={credit._key}>
+                    <p className="font-[Nimbus-Cond] text-xs uppercase opacity-70">
+                      {credit.role[language]}
+                    </p>
+                    <p>{credit.name}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-
-          {/* <div className="text-end font-[Nimbus-Cond]"></div> */}
-
-          {/* {projectData?.links && (
-          <ul className="py-8">
-            {projectData.links.map((link) => (
-              <li key={link._key}>
-                <a href={link.url} target="_blank">
-                  {link.title[language]}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )} */}
         </motion.section>
       </AnimatePresence>
     </>
