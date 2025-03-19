@@ -40,4 +40,7 @@
   color: white;
 
   font-family: "Nimbus-Reg", sans-serif;
+
+  --primary: #fa63af;
+  --secondary: #aeaca3;
 }
