@@ -12,19 +12,19 @@ export default function Header({ infoIsOpen, setInfoIsOpen }) {
   return (
     <header className="fixed inset-0 z-20 flex h-min w-full items-start justify-between p-8 font-[Nimbus-Cond] mix-blend-difference">
       <NavLink to="/" onClick={() => setInfoIsOpen(false)}>
-        <img
+        {/* <img
           src="/img/circulo.svg"
           alt=""
           className="absolute inset-0 -z-10 -mt-8 ml-14 size-38 scale-x-175 -rotate-2 opacity-50"
         />
         <h1 className="font-[display] text-2xl uppercase transition-all hover:text-[var(--primary)]">
           Clara Bunge
-        </h1>
-        {/* <img
-          src="/img/shapes.svg"
+        </h1> */}
+        <img
+          src="/img/clara1.svg"
           alt="Clara Bunge"
-          className="-ml-6 w-58 rotate-12"
-        /> */}
+          className="-mt-2 -ml-2 w-60 invert"
+        />
       </NavLink>
       <nav className="flex gap-2 leading-none">
         <button
