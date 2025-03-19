@@ -12,7 +12,6 @@ export default function Home() {
 
   const handleOnLoad = () => {
     setLoadedVideos((prev) => prev + 1);
-    console.log(loadedVideos);
   };
 
   useEffect(() => {
@@ -64,7 +63,7 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="flex h-screen w-full flex-col justify-end p-8 font-[Nimbus-Cond] text-xs">
+      <div className="flex h-screen w-full flex-col justify-end p-8 font-[Nimbus-Cond] text-sm">
         {data.projects?.map((video, index) => (
           <NavLink
             to={video.slug.current}
@@ -83,7 +82,7 @@ export default function Home() {
             </div>
             <h2
               className={
-                currentVideo._id === video._id ? "opacity-100" : "opacity-70"
+                currentVideo._id === video._id ? "" : "text-[var(--secondary)]"
               }
             >
               {video.title[language] || video.title.es}

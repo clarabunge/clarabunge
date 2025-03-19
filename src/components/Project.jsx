@@ -33,7 +33,7 @@ export default function Project() {
           exit={{ opacity: 0 }}
         >
           <div className="grid grid-cols-6 gap-x-8 gap-y-16">
-            <div className="text-end font-[Nimbus-Cond] opacity-70">
+            <div className="text-end font-[Nimbus-Cond] text-[var(--secondary)]">
               <div className="">
                 {projectData?.typeOfProject?.type?.[language] ?? "-"}
               </div>
@@ -45,27 +45,35 @@ export default function Project() {
             </div>
 
             <div className="">
-              <div className="col-start-2 font-[Nimbus-Cond] opacity-70">
+              <div className="col-start-2 font-[Nimbus-Cond] text-[var(--secondary)]">
                 {projectData?.location?.city ?? "-"},{" "}
                 {projectData?.location?.country ?? "-"}
               </div>
-              <div className="font-[Nimbus-Cond] opacity-70">
+              <div className="font-[Nimbus-Cond] text-[var(--secondary)]">
                 {projectData?.location?.coordinates ?? "-"}
               </div>
               {projectData?.links && (
                 <ul className="">
-                  <li className="pt-8 font-[Nimbus-Cond] text-xs opacity-70">
+                  <li className="pt-8 font-[Nimbus-Cond] text-xs text-[var(--secondary)]">
                     LINKS
                   </li>
                   {projectData.links.map((link) => (
                     <li key={link._key}>
-                      <a href={link.url} target="_blank">
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        className="hover:text-[var(--primary)]"
+                      >
                         {link.title[language]}
                       </a>
                     </li>
                   ))}
                 </ul>
               )}
+            </div>
+
+            <div className="w-max -rotate-12 place-self-end">
+              <img src="/img/asterisco.svg" alt="" className="size-16" />
             </div>
 
             <h2 className="col-span-5 col-start-2 font-[display] text-5xl">
@@ -109,7 +117,7 @@ export default function Project() {
               <div className="col-span-3 col-start-3 flex flex-col gap-4">
                 {projectData.credits.map((credit) => (
                   <div key={credit._key}>
-                    <p className="font-[Nimbus-Cond] text-xs uppercase opacity-70">
+                    <p className="font-[Nimbus-Cond] text-xs text-[var(--secondary)] uppercase">
                       {credit.role[language]}
                     </p>
                     <p>{credit.name}</p>
@@ -120,6 +128,17 @@ export default function Project() {
           </div>
         </motion.section>
       </AnimatePresence>
+
+      {/* <div
+        className="relative h-16"
+        style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+      >
+        <div className="fixed bottom-0 flex h-16 w-full items-center justify-between bg-white px-4 font-[Nimbus-Cond] text-sm text-black">
+          <p>ANTERIOR</p>
+          <p>INICIO</p>
+          <p>SIGUIENTE</p>
+        </div>
+      </div> */}
     </>
   );
 }
