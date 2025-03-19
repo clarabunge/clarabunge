@@ -25,6 +25,7 @@ export async function getMainContent() {
         location,
         links,
         acknowledgements[]{_key, image{'url': asset->url,}, link},
+        credits,
     },
   }`);
 }
