@@ -3,16 +3,24 @@ import { Routes, Route, NavLink } from "react-router";
 import Header from "./components/Header.jsx";
 import Project from "./components/Project.jsx";
 import Info from "./components/Info.jsx";
-import { useMainContent } from "./utils/useData.js";
+import { useIntroUrl, useMainContent } from "./utils/useData.js";
 import useLanguage from "./utils/useLanguage.js";
 import VimeoBackground from "./components/VimeoBackground.jsx";
+import Intro from "./components/Intro.jsx";
+import { AnimatePresence, motion } from "motion/react";
 
 function App() {
   const [infoIsOpen, setInfoIsOpen] = useState(false);
+  const {
+    data: introUrlData,
+    isLoading: isIntroUrlLoading,
+    error: introUrlError,
+  } = useIntroUrl();
   const { data, isLoading, error } = useMainContent();
   const [loadedVideos, setLoadedVideos] = useState(0);
   const [allVideosLoaded, setAllVideosLoaded] = useState(false);
   const { language } = useLanguage();
+  const [introEnded, setIntroEnded] = useState(false);
 
   const handleOnLoad = () => {
     setLoadedVideos((prev) => prev + 1);
@@ -54,15 +62,7 @@ function App() {
     }
   }, [isLoading]);
 
-  if (isLoading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <p>...</p>
-      </div>
-    );
-  }
-
-  if (error) {
+  if (error || introUrlError) {
     return (
       <div className="flex items-center justify-center">
         <p>＞﹏＜</p>
@@ -72,72 +72,92 @@ function App() {
 
   return (
     <>
-      {!allVideosLoaded && (
-        <div className="absolute inset-0 z-100 flex items-center justify-center bg-black">
-          LOADING {loadedVideos}/{data.projects?.length}
-        </div>
-      )}
-
-      <section className="fixed top-0 left-0 -z-10 w-full">
-        <div className={`${allVideosLoaded ? "" : "hidden"}`}>
-          {data.projects?.map((video, index) => (
-            <VimeoBackground
-              key={video._id}
-              videoUrl={video.videoUrl}
-              handleOnLoad={handleOnLoad}
-              hidden={currentVideo?._id !== video._id}
+      <AnimatePresence>
+        {introUrlData?.introUrl && !introEnded && (
+          <motion.div
+            key="intro"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 3 }}
+          >
+            <Intro
+              videoUrl={introUrlData?.introUrl}
+              setIntroEnded={setIntroEnded}
             />
-          ))}
-        </div>
-        <div className="flex h-screen w-full flex-col justify-end p-8 font-[Nimbus-Cond] text-sm">
-          {data.projects?.map((video, index) => (
-            <NavLink
-              to={video.slug.current}
-              key={video._id}
-              className="grid w-full grid-cols-4 border-b border-transparent hover:border-white"
-              onMouseEnter={() => {
-                setIsHovering(true);
-                handleVideoSelect(video, index);
-              }}
-              onMouseLeave={() => {
-                setIsHovering(false);
-              }}
-            >
-              <div className="">
-                {currentVideo?._id === video._id
-                  ? video.location.coordinates
-                  : ""}
-              </div>
-              <h2
-                className={
-                  currentVideo?._id === video._id
-                    ? ""
-                    : "text-[var(--secondary)]"
-                }
-              >
-                {video.title[language] || video.title.es}
-              </h2>
-              <div className="">
-                {currentVideo?._id === video._id
-                  ? video.date.split("-")[0]
-                  : ""}
-              </div>
-              <div className="">
-                {currentVideo?._id === video._id
-                  ? video.typeOfProject.type[language] ||
-                    video.typeOfProject.type.es
-                  : ""}
-              </div>
-            </NavLink>
-          ))}
-        </div>
-      </section>
-      <Header infoIsOpen={infoIsOpen} setInfoIsOpen={setInfoIsOpen} />
-      <Routes>
-        <Route path="/" element={null} />
-        <Route path="/:slug" element={<Project />} />
-      </Routes>
-      {infoIsOpen && <Info />}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {!isLoading && (
+        <>
+          {/* {!allVideosLoaded && (
+            <div className="absolute inset-0 z-100 flex items-center justify-center bg-black">
+              LOADING {loadedVideos}/{data.projects?.length}
+            </div>
+          )} */}
+          <section className="fixed top-0 left-0 -z-10 w-full">
+            <div className={`${allVideosLoaded ? "" : "hidden"}`}>
+              {data.projects?.map((video, index) => (
+                <VimeoBackground
+                  key={video._id}
+                  videoUrl={video.videoUrl}
+                  handleOnLoad={handleOnLoad}
+                  hidden={currentVideo?._id !== video._id}
+                />
+              ))}
+            </div>
+            <div className="flex h-screen w-full flex-col justify-end p-8 font-[Nimbus-Cond] text-sm">
+              {data.projects?.map((video, index) => (
+                <NavLink
+                  to={video.slug.current}
+                  key={video._id}
+                  className="grid w-full grid-cols-4 border-b border-transparent hover:border-white"
+                  onMouseEnter={() => {
+                    setIsHovering(true);
+                    handleVideoSelect(video, index);
+                  }}
+                  onMouseLeave={() => {
+                    setIsHovering(false);
+                  }}
+                >
+                  <div className="">
+                    {currentVideo?._id === video._id
+                      ? video.location.coordinates
+                      : ""}
+                  </div>
+                  <h2
+                    className={
+                      currentVideo?._id === video._id
+                        ? ""
+                        : "text-[var(--secondary)]"
+                    }
+                  >
+                    {video.title[language] || video.title.es}
+                  </h2>
+                  <div className="">
+                    {currentVideo?._id === video._id
+                      ? video.date.split("-")[0]
+                      : ""}
+                  </div>
+                  <div className="">
+                    {currentVideo?._id === video._id
+                      ? video.typeOfProject.type[language] ||
+                        video.typeOfProject.type.es
+                      : ""}
+                  </div>
+                </NavLink>
+              ))}
+            </div>
+          </section>
+          <Header infoIsOpen={infoIsOpen} setInfoIsOpen={setInfoIsOpen} />
+          <Routes>
+            <Route path="/" element={null} />
+            <Route path="/:slug" element={<Project />} />
+          </Routes>
+          {infoIsOpen && <Info />}
+        </>
+      )}
     </>
   );
 }
