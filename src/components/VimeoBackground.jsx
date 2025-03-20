@@ -9,7 +9,7 @@ export default function VimeoBackground({
 }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const iframeRef = useRef(null);
-  const vimeoId = getVimeoId(videoUrl);
+  const { id: vimeoId, hash: vimeoHash } = getVimeoId(videoUrl);
 
   useEffect(() => {
     setIsLoaded(false);
@@ -46,7 +46,7 @@ export default function VimeoBackground({
       >
         <motion.iframe
           ref={iframeRef}
-          src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&quality=720p&loop=1`}
+          src={`https://player.vimeo.com/video/${vimeoId}?${vimeoHash ? `h=${vimeoHash}&` : ""}badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&quality=720p&loop=1`}
           frameBorder="0"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
           style={{
