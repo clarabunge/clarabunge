@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { useImageGallery } from "../utils/useData";
+import { motion, AnimatePresence } from "motion/react";
+import useIsMobile from "../utils/useIsMobile";
 
 export default function ImageGallery({ slug }) {
   const { data, isLoading, error } = useImageGallery(slug);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState(null);
+  const isMobile = useIsMobile();
 
   if (isLoading) {
     return (
@@ -20,16 +26,45 @@ export default function ImageGallery({ slug }) {
   if (!data.images) return null;
 
   return (
-    <div className="columns-1 gap-4 sm:columns-2 md:columns-3">
-      {data.images.map((image) => (
-        <div key={image._key} className="pb-4">
-          <img
-            src={image.url + "?h=500&fm=webp"}
-            alt={image.alt}
-            className="w-full"
-          />
-        </div>
-      ))}
-    </div>
+    <>
+      <AnimatePresence>
+        {isLightboxOpen && (
+          <motion.div
+            key="lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-100 flex h-screen w-screen cursor-zoom-out items-center justify-center backdrop-brightness-20 backdrop-grayscale-100"
+            onClick={() => setIsLightboxOpen(false)}
+          >
+            <img
+              src={currentImage}
+              alt=""
+              className="h-auto max-h-[95vh] w-auto max-w-[95vw]"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div className="columns-1 gap-4 sm:columns-2 md:columns-3">
+        {data.images.map((image) => (
+          <div
+            key={image._key}
+            className={`${isMobile ? "" : "cursor-pointer"} pb-4`}
+            onClick={() => {
+              if (!isMobile) {
+                setCurrentImage(image.url + "?fm=webp");
+                setIsLightboxOpen(true);
+              }
+            }}
+          >
+            <img
+              src={image.url + "?h=1000&fm=webp"}
+              alt={image.alt}
+              className="w-full"
+            />
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
