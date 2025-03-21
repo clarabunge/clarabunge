@@ -81,6 +81,7 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 3 }}
+            className="pointer-events-none"
           >
             <Intro
               videoUrl={introUrlData?.introUrl}
