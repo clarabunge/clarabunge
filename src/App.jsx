@@ -158,7 +158,7 @@ function App() {
               <Route path="/:slug" element={<Project />} />
             </Routes>
           </AnimatePresence>
-          {infoIsOpen && <Info />}
+          <AnimatePresence>{infoIsOpen && <Info key="info" />}</AnimatePresence>
         </div>
       )}
     </>

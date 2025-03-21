@@ -1,13 +1,19 @@
 import { PortableText } from "@portabletext/react";
 import { useMainContent } from "../utils/useData";
 import useLanguage from "../utils/useLanguage";
+import { motion } from "motion/react";
 
 export default function Info() {
   const { data } = useMainContent();
   const { language } = useLanguage();
 
   return (
-    <div className="fixed top-0 left-0 z-10 flex h-screen w-full flex-col items-center justify-center font-[Nimbus-Cond] text-2xl backdrop-brightness-20 backdrop-grayscale-100">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed top-0 left-0 z-10 flex h-screen w-full flex-col items-center justify-center font-[Nimbus-Cond] text-2xl backdrop-brightness-20 backdrop-grayscale-100"
+    >
       <div className="relative max-w-3/4 columns-2 gap-8">
         <div className="flex flex-col gap-4">
           <PortableText value={data?.about?.bio[language]} />
@@ -59,6 +65,6 @@ export default function Info() {
           alt="Clara Bunge"
         />
       )} */}
-    </div>
+    </motion.div>
   );
 }
