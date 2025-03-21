@@ -90,7 +90,7 @@ function App() {
       </AnimatePresence>
 
       {!isLoading && (
-        <>
+        <div className={`${introEnded ? "" : "hidden"}`}>
           {/* {!allVideosLoaded && (
             <div className="absolute inset-0 z-100 flex items-center justify-center bg-black">
               LOADING {loadedVideos}/{data.projects?.length}
@@ -156,7 +156,7 @@ function App() {
             <Route path="/:slug" element={<Project />} />
           </Routes>
           {infoIsOpen && <Info />}
-        </>
+        </div>
       )}
     </>
   );
