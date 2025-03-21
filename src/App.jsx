@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, NavLink } from "react-router";
+import { useLocation, Routes, Route, NavLink } from "react-router";
 import Header from "./components/Header.jsx";
 import Project from "./components/Project.jsx";
 import Info from "./components/Info.jsx";
@@ -21,6 +21,7 @@ function App() {
   const [allVideosLoaded, setAllVideosLoaded] = useState(false);
   const { language } = useLanguage();
   const [introEnded, setIntroEnded] = useState(false);
+  const location = useLocation();
 
   const handleOnLoad = () => {
     setLoadedVideos((prev) => prev + 1);
@@ -151,10 +152,12 @@ function App() {
             </div>
           </section>
           <Header infoIsOpen={infoIsOpen} setInfoIsOpen={setInfoIsOpen} />
-          <Routes>
-            <Route path="/" element={null} />
-            <Route path="/:slug" element={<Project />} />
-          </Routes>
+          <AnimatePresence>
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={null} />
+              <Route path="/:slug" element={<Project />} />
+            </Routes>
+          </AnimatePresence>
           {infoIsOpen && <Info />}
         </div>
       )}
