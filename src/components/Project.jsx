@@ -154,7 +154,7 @@ export default function Project() {
               </div>
             )}
           </div>
-          <img src="/public/img/linea.svg" alt="" className="mx-auto w-32" />
+          <img src="/img/linea.svg" alt="" className="mx-auto w-32" />
         </motion.section>
       </AnimatePresence>
 
