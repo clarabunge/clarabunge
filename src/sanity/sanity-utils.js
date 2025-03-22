@@ -23,6 +23,7 @@ export async function getMainContent() {
         previewUrl,
         description, 
         location,
+        linksSectionTitle,
         links,
         acknowledgements[]{_key, image{'url': asset->url,}, link},
         credits,

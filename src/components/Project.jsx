@@ -53,9 +53,11 @@ export default function Project() {
             </div>
             {projectData?.links && (
               <ul className="">
-                <li className="pt-8 font-[Nimbus-Cond] text-xs text-[var(--secondary)]">
-                  LINKS
-                </li>
+                {projectData?.linksSectionTitle && (
+                  <li className="pt-8 font-[Nimbus-Cond] text-xs text-[var(--secondary)] uppercase">
+                    {projectData?.linksSectionTitle[language]}
+                  </li>
+                )}
                 {projectData.links.map((link) => (
                   <li key={link._key}>
                     <a
