@@ -12,7 +12,7 @@ export default function Info() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="no-doc-scroll fixed top-0 left-0 z-10 flex h-screen w-full flex-col items-center justify-center font-[Nimbus-Cond] text-2xl backdrop-brightness-20 backdrop-grayscale-100"
+      className="no-doc-scroll fixed top-0 left-0 z-10 flex h-screen w-full flex-col items-center justify-center text-xl text-white backdrop-brightness-20 backdrop-grayscale-100"
     >
       <div className="relative max-w-3/4 columns-2 gap-8">
         <div className="flex flex-col gap-4">
@@ -29,7 +29,7 @@ export default function Info() {
             </a>
           )}
           {data.about.contact.phone && (
-            <div className="font-[display] transition-colors hover:text-white">
+            <div className="font-[detail] transition-colors hover:text-white">
               {data.about.contact.phone}
             </div>
           )}

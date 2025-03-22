@@ -6,33 +6,22 @@
 }
 
 @font-face {
-  font-family: "Nimbus-Bold";
-  src: url("/fonts/NimbusSanL-Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Nimbus-RegItal";
-  src: url("/fonts/NimbusSanL-ReguItal.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Mplus";
-  src: url("/fonts/mplus-1m-light.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "Nimbus-Cond";
-  src: url("/fonts/NimbusSanL-ReguCond.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Nimbus-CondItal";
-  src: url("/fonts/NimbusSanL-ReguCondItal.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "display";
-  src: url("/fonts/Isenheim_Fin.otf");
+  /* src: url("/fonts/Inter_24pt-Black.ttf") format("truetype"); */
+  src: url("/fonts/ArchivoBlack-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "detail";
+  /* src: url("/fonts/XanhMono-Regular.ttf"); */
+  /* src: url("/fonts/mplus-1m-light.otf") format("opentype"); */
+  /* src: url("/fonts/InstrumentSerif-Regular.ttf") format("truetype"); */
+  src: url("/fonts/DraftingMono-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "body";
+  src: url("/fonts/Inter_18pt-Regular.ttf");
 }
 
 :root {

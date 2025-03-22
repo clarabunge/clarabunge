@@ -10,7 +10,7 @@ export default function Header({ infoIsOpen, setInfoIsOpen }) {
   };
 
   return (
-    <header className="fixed inset-0 z-20 flex h-min w-full items-start justify-between p-8 font-[Nimbus-Cond] mix-blend-difference">
+    <header className="fixed inset-0 z-20 flex h-min w-full items-start justify-between p-8 text-sm mix-blend-difference">
       <NavLink to="/" onClick={() => setInfoIsOpen(false)}>
         {/* <img
           src="/img/circulo.svg"

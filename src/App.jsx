@@ -109,7 +109,7 @@ function App() {
                 />
               ))}
             </div>
-            <div className="flex h-screen w-full flex-col justify-end p-8 font-[Nimbus-Cond] text-sm">
+            <div className="flex h-screen w-full flex-col justify-end p-8 text-xs">
               {data.projects?.map((video, index) => (
                 <NavLink
                   to={video.slug.current}
