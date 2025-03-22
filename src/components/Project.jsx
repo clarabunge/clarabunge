@@ -25,115 +25,144 @@ export default function Project() {
 
   return (
     <>
-      <motion.section
-        className="flex flex-col gap-8 bg-black px-8 py-32 text-sm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        <div className="grid grid-cols-6 gap-x-8 gap-y-16">
-          <div className="text-end font-[Nimbus-Cond] text-[var(--secondary)]">
-            <div className="">
-              {projectData?.typeOfProject?.type?.[language] ?? "-"}
-            </div>
-            <div>{projectData?.date.slice(0, 4) ?? "-"}</div>
-          </div>
+      <AnimatePresence>
+        <motion.section
+          className="bg-background flex flex-col gap-8 px-8 py-24 text-xs"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <div className="grid grid-cols-12 gap-x-4 gap-y-12">
+            <div className="text-secondary flex rotate-180 flex-col justify-end gap-2 justify-self-end font-[detail] uppercase [writing-mode:vertical-rl]">
+              {/* <div className="text-secondary">
+                {projectData?.date.slice(0, 4) ?? "-"}
+              </div> */}
 
-          <div className="group relative col-span-4 w-full overflow-hidden rounded-md">
-            <VideoPlayer videoUrl={projectData?.videoUrl} />
-          </div>
+              {/* <div className="w-max self-start bg-secondary px-1 leading-none text-black">
+                {projectData?.typeOfProject?.type?.[language] ?? "-"}
+              </div> */}
 
-          <div className="">
-            <div className="col-start-2 font-[Nimbus-Cond] text-[var(--secondary)]">
-              {projectData?.location?.city ?? "-"},{" "}
-              {projectData?.location?.country ?? "-"}
+              <div className="flex justify-between">
+                <div className="text-secondary font-[detail]">
+                  <div className="bg-primary mb-2 inline-block size-3 rounded-full blur-[2px]" />
+                  {projectData?.location?.city ?? "-"},{" "}
+                  {projectData?.location?.country ?? "-"}
+                </div>
+                <div className="text-secondary font-[detail]">
+                  {projectData?.location?.coordinates ?? "-"}
+                </div>
+              </div>
             </div>
-            <div className="font-[Nimbus-Cond] text-[var(--secondary)]">
-              {projectData?.location?.coordinates ?? "-"}
+
+            <div className="group relative col-span-10 col-start-2 w-full overflow-hidden rounded-md">
+              <VideoPlayer videoUrl={projectData?.videoUrl} />
             </div>
+
+            <div className="col-start-1 flex flex-col items-end font-[detail] uppercase">
+              <div className="text-secondary w-max">
+                {projectData?.date.slice(0, 4) ?? "-"}
+              </div>
+
+              <div className="bg-secondary text-background w-max leading-none">
+                {projectData?.typeOfProject?.type?.[language] ?? "-"}
+              </div>
+            </div>
+
+            <div className="col-span-10 col-start-2 flex flex-col items-start gap-4">
+              <h2 className="font-[display] text-5xl uppercase blur-[1px] drop-shadow-[0_0_1px_var(--text)]">
+                {projectData?.title?.[language] || projectData?.title?.es}
+              </h2>
+              {/* <div className="w-max self-start bg-secondary px-1 font-[detail] leading-none text-background uppercase">
+                {projectData?.typeOfProject?.type?.[language] ?? "-"}
+              </div> */}
+            </div>
+
+            <div className="text-secondary col-span-8 col-start-4 flex flex-col gap-4 pb-16 text-lg">
+              <PortableText value={projectData?.description?.[language]} />
+            </div>
+
+            <div className="w-max -rotate-12 justify-self-center">
+              <img
+                src="/img/asterisco.svg"
+                alt=""
+                className="size-16 blur-[0.5px]"
+              />
+            </div>
+
+            {projectData?.acknowledgements && (
+              <div className="col-span-8 col-start-3 flex items-center justify-center gap-4">
+                {projectData.acknowledgements.map((acknowledgement) => (
+                  <div key={acknowledgement._key}>
+                    {acknowledgement.link ? (
+                      <a href={acknowledgement.link} target="_blank">
+                        {" "}
+                        <img
+                          src={acknowledgement.image.url + "?w20&fm=webp"}
+                          alt=""
+                          className="bg-background max-w-[150px]"
+                        />
+                      </a>
+                    ) : (
+                      <img
+                        src={acknowledgement.image.url + "?h=500&fm=webp"}
+                        alt=""
+                        className="bg-background max-w-[300px]"
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
             {projectData?.links && (
-              <ul className="">
+              <div className="col-span-4 col-start-8 text-end">
                 {projectData?.linksSectionTitle && (
-                  <li className="pt-8 font-[Nimbus-Cond] text-xs text-[var(--secondary)] uppercase">
+                  <li className="text-secondary flex items-center justify-end gap-2 font-[detail] text-xs uppercase">
                     {projectData?.linksSectionTitle[language]}
+                    <span className="bg-secondary inline-block h-[1px] w-6" />
                   </li>
                 )}
                 {projectData.links.map((link) => (
-                  <li key={link._key}>
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      className="hover:text-[var(--primary)]"
-                    >
+                  <a
+                    key={link._key}
+                    className="uppercase"
+                    href={link.url}
+                    target="_blank"
+                  >
+                    <span className="hover:text-primary">
                       {link.title[language]}
-                    </a>
-                  </li>
+                    </span>
+                  </a>
                 ))}
-              </ul>
+              </div>
+            )}
+
+            <div className="col-span-12 col-start-1">
+              <ImageGallery slug={projectData?.slug?.current} />
+            </div>
+
+            {projectData?.credits && (
+              <div className="col-span-12 flex max-w-3xl flex-col items-center gap-4 place-self-center text-center uppercase">
+                {projectData.credits.map((credit) => (
+                  <div key={credit._key}>
+                    <p className="text-secondary font-[detail] text-xs">
+                      {credit.role[language]}
+                    </p>
+                    <p>{credit.name}</p>
+                  </div>
+                ))}
+              </div>
             )}
           </div>
-
-          <div className="w-max -rotate-12 place-self-end">
-            <img src="/img/asterisco.svg" alt="" className="size-16" />
-          </div>
-
-          <h2 className="col-span-5 col-start-2 font-[display] text-5xl">
-            {projectData?.title?.[language] || projectData?.title?.es}
-          </h2>
-
-          <div className="col-span-3 col-start-3 flex flex-col gap-4 py-8 text-lg">
-            <PortableText value={projectData?.description?.[language]} />
-          </div>
-
-          {projectData?.acknowledgements && (
-            <div className="col-span-4 col-start-2 flex items-center justify-center gap-4">
-              {projectData.acknowledgements.map((acknowledgement) => (
-                <div key={acknowledgement._key}>
-                  {acknowledgement.link ? (
-                    <a href={acknowledgement.link} target="_blank">
-                      {" "}
-                      <img
-                        src={acknowledgement.image.url + "?w20&fm=webp"}
-                        alt=""
-                        className="max-w-[150px] bg-white"
-                      />
-                    </a>
-                  ) : (
-                    <img
-                      src={acknowledgement.image.url + "?h=500&fm=webp"}
-                      alt=""
-                      className="max-w-[300px] bg-white"
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div className="col-span-6 col-start-1">
-            <ImageGallery slug={projectData?.slug?.current} />
-          </div>
-
-          {projectData?.credits && (
-            <div className="col-span-3 col-start-3 flex flex-col gap-4">
-              {projectData.credits.map((credit) => (
-                <div key={credit._key}>
-                  <p className="font-[Nimbus-Cond] text-xs text-[var(--secondary)] uppercase">
-                    {credit.role[language]}
-                  </p>
-                  <p>{credit.name}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </motion.section>
+          <img src="/public/img/linea.svg" alt="" className="mx-auto w-32" />
+        </motion.section>
+      </AnimatePresence>
 
       {/* <div
         className="relative h-16"
         style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
       >
-        <div className="fixed bottom-0 flex h-16 w-full items-center justify-between bg-white px-4 font-[Nimbus-Cond] text-sm text-black">
+        <div className="fixed bottom-0 flex h-16 w-full items-center justify-between bg-secondary px-4 font-[detail] text-xs text-black">
           <p>ANTERIOR</p>
           <p>INICIO</p>
           <p>SIGUIENTE</p>

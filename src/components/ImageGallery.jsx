@@ -45,7 +45,7 @@ export default function ImageGallery({ slug }) {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="columns-1 gap-4 sm:columns-2 md:columns-3">
+      <div className="columns-3xs gap-8 px-4">
         {data.images.map((image) => (
           <div
             key={image._key}
