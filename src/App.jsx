@@ -99,7 +99,7 @@ function App() {
             </div>
           )} */}
           <section
-            className={`fixed top-0 left-0 -z-10 w-full uppercase ${location.pathname === "/" ? "" : "hidden"}`}
+            className={`fixed top-0 left-0 -z-10 w-full uppercase ${location.pathname === "/" ? "opacity-100" : "opacity-0"} transition-opacity duration-1000`}
           >
             <div className={`${allVideosLoaded ? "" : "hidden"}`}>
               {data.projects?.map((video, index) => (
