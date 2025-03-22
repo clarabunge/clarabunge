@@ -44,3 +44,7 @@
   --primary: #fa63af;
   --secondary: #aeaca3;
 }
+
+:root:has(.no-doc-scroll) {
+  overflow: hidden;
+}
