@@ -7,6 +7,14 @@ export default function Info() {
   const { data } = useMainContent();
   const { language } = useLanguage();
 
+  const components = {
+    block: {
+      normal: (props) => (
+        <p className="break-inside-avoid pb-4">{props.children}</p>
+      ),
+    },
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -15,11 +23,12 @@ export default function Info() {
       className="no-doc-scroll fixed top-0 left-0 z-10 flex h-screen w-full flex-col items-center justify-center text-xl text-white backdrop-brightness-20 backdrop-grayscale-100"
     >
       <div className="relative max-w-3/4 columns-2 gap-8">
-        <div className="flex flex-col gap-4">
-          <PortableText value={data?.about?.bio[language]} />
-        </div>
+        <PortableText
+          components={components}
+          value={data?.about?.bio[language]}
+        />
 
-        <div className="mt-8 flex flex-col items-start text-lg text-[var(--secondary)] uppercase">
+        <div className="text-secondary-dim mt-14 flex flex-col items-start text-base uppercase">
           {data?.about?.contact.email && (
             <a
               href={`mailto:${data?.about?.contact.email}`}
@@ -46,7 +55,7 @@ export default function Info() {
             <a
               href={data?.about?.cv?.asset?.url}
               target="_blank"
-              className="text-lg text-[var(--secondary)] transition-colors hover:text-white"
+              className="text-secondary-dim text-lg transition-colors hover:text-white"
             >
               CV
             </a>

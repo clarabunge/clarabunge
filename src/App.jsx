@@ -98,7 +98,9 @@ function App() {
               LOADING {loadedVideos}/{data.projects?.length}
             </div>
           )} */}
-          <section className="fixed top-0 left-0 -z-10 w-full">
+          <section
+            className={`fixed top-0 left-0 -z-10 w-full uppercase ${location.pathname === "/" ? "" : "hidden"}`}
+          >
             <div className={`${allVideosLoaded ? "" : "hidden"}`}>
               {data.projects?.map((video, index) => (
                 <VimeoBackground
@@ -123,7 +125,7 @@ function App() {
                     setIsHovering(false);
                   }}
                 >
-                  <div className="">
+                  <div className="font-[detail] text-white">
                     {currentVideo?._id === video._id
                       ? video.location.coordinates
                       : ""}
@@ -131,18 +133,18 @@ function App() {
                   <h2
                     className={
                       currentVideo?._id === video._id
-                        ? ""
-                        : "text-[var(--secondary)]"
+                        ? "text-white"
+                        : "text-secondary-dim"
                     }
                   >
                     {video.title[language] || video.title.es}
                   </h2>
-                  <div className="">
+                  <div className="font-[detail] text-white">
                     {currentVideo?._id === video._id
                       ? video.date.split("-")[0]
                       : ""}
                   </div>
-                  <div className="">
+                  <div className="font-[detail] text-white">
                     {currentVideo?._id === video._id
                       ? video.typeOfProject.type[language] ||
                         video.typeOfProject.type.es

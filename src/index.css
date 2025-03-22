@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Nimbus-Reg";
-  src: url("/fonts/NimbusSanL-Regu.ttf") format("truetype");
+@theme {
+  --color-background: #e9e9e9;
+  --color-text: #000000;
+  /* --color-primary: #d62848; */
+  --color-primary: #e08311;
+  --color-secondary: #585652;
+  --color-secondary-dim: #a09e99;
 }
 
 @font-face {
@@ -25,13 +29,10 @@
 }
 
 :root {
-  background-color: black;
-  color: white;
+  @apply bg-background text-text;
 
-  font-family: "Nimbus-Reg", sans-serif;
-
-  --primary: #fa63af;
-  --secondary: #aeaca3;
+  font-family: "Times New Roman", Times, serif;
+  font-family: "body", sans-serif;
 }
 
 :root:has(.no-doc-scroll) {

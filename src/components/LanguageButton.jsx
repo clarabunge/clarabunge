@@ -5,7 +5,7 @@ export default function LanguageButton() {
 
   return (
     <button
-      className="cursor-pointer text-[var(--secondary)] transition-all hover:text-white"
+      className="text-secondary-dim cursor-pointer transition-all hover:text-white"
       onClick={() => setLanguage(language === "es" ? "en" : "es")}
     >
       {language === "en" ? "ES" : "EN"}
