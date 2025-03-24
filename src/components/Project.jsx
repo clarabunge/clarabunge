@@ -69,7 +69,7 @@ export default function Project() {
             </div>
 
             <div className="col-span-10 col-start-2 flex flex-col items-start gap-4">
-              <h2 className="font-[display] text-5xl uppercase blur-[1px] drop-shadow-[0_0_1px_var(--text)]">
+              <h2 className="font-[display] text-5xl tracking-tighter uppercase">
                 {projectData?.title?.[language] || projectData?.title?.es}
               </h2>
               {/* <div className="w-max self-start bg-secondary px-1 font-[detail] leading-none text-background uppercase">
@@ -129,7 +129,7 @@ export default function Project() {
                     href={link.url}
                     target="_blank"
                   >
-                    <span className="hover:text-primary">
+                    <span className="hover:bg-text hover:text-background">
                       {link.title[language]}
                     </span>
                   </a>
@@ -155,7 +155,7 @@ export default function Project() {
             )}
           </div>
           <img
-            src="/public/img/linea.svg"
+            src="/img/linea.svg"
             alt=""
             className="mx-auto w-32 select-none"
           />

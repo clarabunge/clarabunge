@@ -40,12 +40,12 @@ export default function ImageGallery({ slug }) {
             <img
               src={currentImage}
               alt=""
-              className="h-auto max-h-[95vh] w-auto max-w-[95vw]"
+              className="h-auto max-h-[95vh] w-auto max-w-[95vw] rounded-sm"
             />
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="columns-3xs gap-8 px-4">
+      <div className="columns-3xs gap-4">
         {data.images.map((image) => (
           <div
             key={image._key}
@@ -60,7 +60,7 @@ export default function ImageGallery({ slug }) {
             <img
               src={image.url + "?h=1000&fm=webp"}
               alt={image.alt}
-              className="w-full"
+              className="w-full rounded-sm"
             />
           </div>
         ))}
