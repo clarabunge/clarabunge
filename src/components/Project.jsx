@@ -54,7 +54,7 @@ export default function Project() {
               </div>
             </div>
 
-            <div className="group relative col-span-10 col-start-2 w-full overflow-hidden rounded-md">
+            <div className="group relative col-span-10 col-start-2 w-full overflow-hidden rounded-md select-none">
               <VideoPlayer videoUrl={projectData?.videoUrl} />
             </div>
 
@@ -81,7 +81,7 @@ export default function Project() {
               <PortableText value={projectData?.description?.[language]} />
             </div>
 
-            <div className="w-max -rotate-12 justify-self-center">
+            <div className="w-max -rotate-12 justify-self-center select-none">
               <img
                 src="/img/asterisco.svg"
                 alt=""
@@ -154,7 +154,11 @@ export default function Project() {
               </div>
             )}
           </div>
-          <img src="/public/img/linea.svg" alt="" className="mx-auto w-32" />
+          <img
+            src="/public/img/linea.svg"
+            alt=""
+            className="mx-auto w-32 select-none"
+          />
         </motion.section>
       </AnimatePresence>
 

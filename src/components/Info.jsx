@@ -65,7 +65,7 @@ export default function Info() {
         <img
           src="/img/corazon.svg"
           alt=""
-          className="absolute right-1/4 -bottom-10 size-16 rotate-[20deg] opacity-50"
+          className="absolute right-1/4 -bottom-10 size-16 rotate-[20deg] opacity-50 select-none"
         />
       </div>
       {/* {data?.about?.image?.url && (

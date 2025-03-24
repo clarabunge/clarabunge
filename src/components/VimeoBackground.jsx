@@ -42,7 +42,7 @@ export default function VimeoBackground({
           overflow: "hidden",
           position: "relative",
         }}
-        className="relative h-full w-full object-cover"
+        className="relative h-full w-full object-cover select-none"
       >
         <motion.iframe
           ref={iframeRef}
