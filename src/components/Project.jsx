@@ -169,16 +169,7 @@ export default function Project() {
         </motion.section>
       </AnimatePresence>
 
-      {/* <div
-        className="relative h-16"
-        style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
-      >
-        <div className="fixed bottom-0 flex h-16 w-full items-center justify-between bg-secondary px-4 font-[detail] text-xs text-black">
-          <p>ANTERIOR</p>
-          <p>INICIO</p>
-          <p>SIGUIENTE</p>
-        </div>
-      </div> */}
+      <Footer prevProject={prevProject} nextProject={nextProject} />
     </>
   );
 }
