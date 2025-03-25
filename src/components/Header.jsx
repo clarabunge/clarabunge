@@ -11,7 +11,7 @@ export default function Header({ infoIsOpen, setInfoIsOpen }) {
   };
 
   return (
-    <header className="fixed inset-0 z-20 flex h-min w-full items-start justify-between p-8 text-sm mix-blend-difference select-none">
+    <header className="fixed inset-0 z-20 flex h-min w-full items-start justify-between p-4 text-sm mix-blend-difference select-none md:p-8">
       <NavLink to="/" onClick={() => setInfoIsOpen(false)}>
         <img
           src="/img/clara1.svg"

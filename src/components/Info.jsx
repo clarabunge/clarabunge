@@ -20,9 +20,9 @@ export default function Info() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="no-doc-scroll fixed top-0 left-0 z-10 flex h-screen w-full flex-col items-center justify-center text-xl text-white backdrop-brightness-20 backdrop-grayscale-100"
+      className="no-doc-scroll fixed top-0 left-0 z-10 flex h-screen w-full flex-col items-center justify-center text-white backdrop-brightness-5 backdrop-grayscale-100 md:text-xl md:backdrop-brightness-20"
     >
-      <div className="relative max-w-3/4 columns-2 gap-8">
+      <div className="relative gap-8 overflow-y-auto px-4 pt-24 pb-12 md:max-w-3/4 md:columns-2 md:p-0 md:pt-32">
         <PortableText
           components={components}
           value={data?.about?.bio[language]}
@@ -65,7 +65,7 @@ export default function Info() {
         <img
           src="/img/corazon.svg"
           alt=""
-          className="absolute right-1/4 -bottom-10 size-16 rotate-[20deg] opacity-50 select-none"
+          className="absolute right-8 size-16 rotate-[20deg] opacity-50 select-none md:right-1/4 md:-bottom-10"
         />
       </div>
       {/* {data?.about?.image?.url && (
