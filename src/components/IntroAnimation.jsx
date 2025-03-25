@@ -30,8 +30,8 @@ export default function IntroAnimation({ status }) {
   // Initialize nodes and connections
   useEffect(() => {
     if (containerRef.current && status === "start") {
-      const width = containerRef.current.clientWidth / 2;
-      const height = containerRef.current.clientHeight / 2;
+      const width = containerRef.current.clientWidth;
+      const height = containerRef.current.clientHeight;
       setDimensions({ width, height });
 
       // Create nodes
@@ -39,8 +39,9 @@ export default function IntroAnimation({ status }) {
       const newNodes = [];
 
       for (let i = 0; i < nodeCount; i++) {
-        const x = Math.random() * width * 0.8 + width * 0.1;
-        const y = Math.random() * height * 0.8 + height * 0.1;
+        // Create nodes in the center area (25% to 75% of the container)
+        const x = width * 0.25 + Math.random() * width * 0.5;
+        const y = height * 0.25 + Math.random() * height * 0.5;
 
         newNodes.push({
           id: i,
@@ -172,8 +173,8 @@ export default function IntroAnimation({ status }) {
   useEffect(() => {
     const handleResizeImpl = () => {
       if (containerRef.current) {
-        const newWidth = containerRef.current.clientWidth / 2;
-        const newHeight = containerRef.current.clientHeight / 2;
+        const newWidth = containerRef.current.clientWidth;
+        const newHeight = containerRef.current.clientHeight;
 
         // Update dimensions
         setDimensions({
