@@ -1,6 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
+// Add debounce function
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
 export default function IntroAnimation({ status }) {
   const [nodes, setNodes] = useState([]);
   const [connections, setConnections] = useState([]);
@@ -157,18 +170,51 @@ export default function IntroAnimation({ status }) {
 
   // Handle window resize
   useEffect(() => {
-    const handleResize = () => {
+    const handleResizeImpl = () => {
       if (containerRef.current) {
+        const newWidth = containerRef.current.clientWidth / 2;
+        const newHeight = containerRef.current.clientHeight / 2;
+
+        // Update dimensions
         setDimensions({
-          width: containerRef.current.clientWidth,
-          height: containerRef.current.clientHeight,
+          width: newWidth,
+          height: newHeight,
         });
+
+        // Reposition nodes based on new dimensions
+        if (nodes.length > 0) {
+          const widthRatio = newWidth / (dimensions.width || 1);
+          const heightRatio = newHeight / (dimensions.height || 1);
+
+          // Update node positions
+          const updatedNodes = nodes.map((node) => {
+            const scaledX = node.x * widthRatio;
+            const scaledY = node.y * heightRatio;
+
+            // Update the node position reference
+            nodePositions.current[node.id] = { x: scaledX, y: scaledY };
+
+            return {
+              ...node,
+              x: scaledX,
+              y: scaledY,
+              // Scale the offset values proportionally
+              offsetX: node.offsetX * widthRatio,
+              offsetY: node.offsetY * heightRatio,
+            };
+          });
+
+          setNodes(updatedNodes);
+        }
       }
     };
 
+    // Debounce the resize handler to improve performance
+    const handleResize = debounce(handleResizeImpl, 150);
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [nodes, dimensions.width, dimensions.height]);
 
   // Check if a connection should be visible
   const isConnectionVisible = (connection) => {
