@@ -78,7 +78,7 @@ export default function Intro({ videoUrl, setIntroEnded }) {
         src={`https://player.vimeo.com/video/${vimeoId}?${vimeoHash ? `h=${vimeoHash}&` : ""}badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&quality=720p&loop=0`}
         frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-        className="top-0 left-0 h-full w-1/3"
+        className="top-0 left-0 h-full w-full sm:w-1/3"
       ></motion.iframe>
       <IntroAnimation status={animationStatus} />
     </div>
