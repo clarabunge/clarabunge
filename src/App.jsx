@@ -115,12 +115,12 @@ function App() {
                 />
               ))}
             </div>
-            <div className="flex h-screen w-full flex-col justify-end p-8 text-xs">
+            <div className="flex h-screen w-full flex-col justify-end p-4 text-xs md:p-8">
               {data.projects?.map((video, index) => (
                 <NavLink
                   to={video.slug.current}
                   key={video._id}
-                  className="grid w-full grid-cols-4 border-b border-transparent hover:border-white"
+                  className="grid w-full border-b border-transparent text-base hover:border-white md:grid-cols-4"
                   onMouseEnter={() => {
                     setIsHovering(true);
                     handleVideoSelect(video, index);
@@ -129,7 +129,7 @@ function App() {
                     setIsHovering(false);
                   }}
                 >
-                  <div className="font-[detail] text-white">
+                  <div className="font-[detail] text-white max-md:hidden">
                     {currentVideo?._id === video._id
                       ? video.location.coordinates
                       : ""}
@@ -137,18 +137,18 @@ function App() {
                   <h2
                     className={
                       currentVideo?._id === video._id
-                        ? "text-white"
+                        ? "border-white text-white max-md:border-b"
                         : "text-secondary-dim"
                     }
                   >
                     {video.title[language] || video.title.es}
                   </h2>
-                  <div className="font-[detail] text-white">
+                  <div className="font-[detail] text-white max-md:hidden">
                     {currentVideo?._id === video._id
                       ? video.date.split("-")[0]
                       : ""}
                   </div>
-                  <div className="font-[detail] text-white">
+                  <div className="font-[detail] text-white max-md:hidden">
                     {currentVideo?._id === video._id
                       ? video.typeOfProject.type[language] ||
                         video.typeOfProject.type.es
