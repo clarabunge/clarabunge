@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-export default function IntroAnimation({ status, videoWidth, videoHeight }) {
+export default function IntroAnimation({ status }) {
   const [nodes, setNodes] = useState([]);
   const [connections, setConnections] = useState([]);
   const [dimensions, setDimensions] = useState({
-    width: videoWidth || 0,
-    height: videoHeight || 0,
+    width: 0,
+    height: 0,
   });
   const containerRef = useRef(null);
   const nodePositions = useRef({});
@@ -17,8 +17,8 @@ export default function IntroAnimation({ status, videoWidth, videoHeight }) {
   // Initialize nodes and connections
   useEffect(() => {
     if (containerRef.current && status === "start") {
-      const width = videoWidth || containerRef.current.clientWidth / 2;
-      const height = videoHeight || containerRef.current.clientHeight / 2;
+      const width = containerRef.current.clientWidth / 2;
+      const height = containerRef.current.clientHeight / 2;
       setDimensions({ width, height });
 
       // Create nodes
@@ -97,7 +97,7 @@ export default function IntroAnimation({ status, videoWidth, videoHeight }) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [status, videoWidth, videoHeight]);
+  }, [status]);
 
   // Handle end state - exit animation
   useEffect(() => {
