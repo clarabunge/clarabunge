@@ -25,7 +25,8 @@
 
 @font-face {
   font-family: "body";
-  src: url("/fonts/Inter_18pt-Regular.ttf");
+  /* src: url("/fonts/Inter_18pt-Regular.ttf"); */
+  src: url("/fonts/Absans-Regular.woff2") format("woff2");
 }
 
 :root {
