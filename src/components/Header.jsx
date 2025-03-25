@@ -28,7 +28,7 @@ export default function Header({ infoIsOpen, setInfoIsOpen }) {
           }`}
           onClick={() => setInfoIsOpen((prev) => !prev)}
         >
-          {infoIsOpen ? close[language] : "info"}
+          {infoIsOpen ? close[language] : "bio"}
         </button>
         <LanguageButton />
       </nav>
