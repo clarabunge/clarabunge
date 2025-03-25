@@ -77,8 +77,10 @@ export default function Project() {
               </div> */}
             </div>
 
-            <div className="text-secondary col-span-8 col-start-4 flex flex-col gap-4 pb-16 text-lg">
-              <PortableText value={projectData?.description?.[language]} />
+            <div>
+              {projectData?.roles?.map((role) => (
+                <div key={role._id}>{role.role[language]}</div>
+              ))}
             </div>
 
             <div className="w-max -rotate-12 justify-self-center select-none">
@@ -87,6 +89,10 @@ export default function Project() {
                 alt=""
                 className="size-16 blur-[0.5px]"
               />
+            </div>
+
+            <div className="text-secondary col-span-8 col-start-4 flex flex-col gap-4 pb-16 text-lg">
+              <PortableText value={projectData?.description?.[language]} />
             </div>
 
             {projectData?.acknowledgements && (

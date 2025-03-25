@@ -17,6 +17,7 @@ export async function getMainContent() {
         slug, 
         date,
         typeOfProject->{_id, type},
+        roles[]->{_id, role},
         image{'url': asset->url,}, 
         videoUrl,
         isTrailer,
