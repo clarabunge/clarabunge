@@ -13,6 +13,11 @@ export default function Project() {
   const { data, isLoading } = useMainContent();
   const { language } = useLanguage();
   const { slug } = useParams();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   if (isLoading) {
     return (
@@ -40,20 +45,9 @@ export default function Project() {
         : data?.projects.indexOf(projectData) - 1
     ];
 
-  function ScrollToTop() {
-    const { pathname } = useLocation();
-
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, [pathname]);
-
-    return null;
-  }
-
   return (
     <>
       <AnimatePresence>
-        <ScrollToTop />
         <motion.section
           className="bg-background flex flex-col gap-8 p-4 py-16 text-xs md:px-8 md:py-24"
           initial={{ opacity: 0 }}
