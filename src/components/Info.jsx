@@ -20,9 +20,9 @@ export default function Info() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="no-doc-scroll fixed top-0 left-0 z-10 flex h-screen w-full flex-col items-center justify-center text-white backdrop-brightness-5 backdrop-grayscale-100 md:text-xl md:backdrop-brightness-20"
+      className="no-doc-scroll fixed top-0 left-0 z-10 flex h-screen w-full flex-col items-center justify-center text-white backdrop-brightness-5 backdrop-grayscale-100 md:backdrop-brightness-20 lg:text-xl"
     >
-      <div className="relative gap-8 overflow-y-auto px-4 pt-24 pb-12 md:max-w-3/4 md:columns-2 md:p-0 md:pt-32">
+      <div className="relative gap-8 px-4 pt-24 pb-12 max-sm:h-full max-sm:overflow-y-auto md:max-w-3/4 md:columns-2 md:p-0 md:pt-32">
         <PortableText
           components={components}
           value={data?.about?.bio[language]}
