@@ -117,12 +117,12 @@ function App() {
                 />
               ))}
             </div>
-            <div className="flex h-screen w-full flex-col justify-end p-4 text-xs md:p-8">
+            <div className="flex h-screen w-full flex-col justify-end p-4 text-base md:p-8 md:text-xs">
               {data.projects?.map((video, index) => (
                 <NavLink
                   to={video.slug.current}
                   key={video._id}
-                  className="grid w-full border-b border-transparent text-base hover:border-white md:grid-cols-4"
+                  className="grid w-full border-b border-transparent hover:border-white md:grid-cols-4"
                   onMouseEnter={() => {
                     if (!isMobile) {
                       setIsHovering(true);
