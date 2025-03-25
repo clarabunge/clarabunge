@@ -5,14 +5,14 @@ import { motion } from "motion/react";
 import IntroAnimation from "./IntroAnimation";
 
 const line = {
-  initial: { opacity: 1, scale: 0 },
-  loading: { opacity: 0.8, scale: 0.33, transition: { duration: 7 } },
+  initial: { opacity: 1, scaleY: 0 },
+  loading: { opacity: 0.8, scaleY: 0.33, transition: { duration: 7 } },
   start: {
     opacity: 0,
-    scale: 0,
+    scaleY: 0,
     transition: { duration: 1 },
   },
-  end: { opacity: 0, rotate: 180, scale: 0, transition: { duration: 1 } },
+  end: { opacity: 0, rotate: 180, scaleY: 0, transition: { duration: 1 } },
 };
 
 const videoIframe = {
