@@ -4,7 +4,10 @@ import ImageGallery from "./ImageGallery";
 import { PortableText } from "@portabletext/react";
 import useLanguage from "../utils/useLanguage";
 import { AnimatePresence, motion } from "motion/react";
-import { useParams } from "react-router";
+import { NavLink, useLocation, useParams } from "react-router";
+import { useEffect } from "react";
+import Line from "./Line";
+import Footer from "./Footer";
 
 export default function Project() {
   const { data, isLoading } = useMainContent();
@@ -23,42 +26,58 @@ export default function Project() {
     (project) => project.slug.current === slug,
   );
 
+  const nextProject =
+    data?.projects[
+      data?.projects.indexOf(projectData) + 1 > data?.projects.length - 1
+        ? 0
+        : data?.projects.indexOf(projectData) + 1
+    ];
+
+  const prevProject =
+    data?.projects[
+      data?.projects.indexOf(projectData) - 1 < 0
+        ? data?.projects.length - 1
+        : data?.projects.indexOf(projectData) - 1
+    ];
+
+  function ScrollToTop() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+
+    return null;
+  }
+
   return (
     <>
       <AnimatePresence>
+        <ScrollToTop />
         <motion.section
-          className="bg-background flex flex-col gap-8 px-8 py-24 text-xs"
+          className="bg-background flex flex-col gap-8 p-4 py-16 text-xs md:px-8 md:py-24"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div className="grid grid-cols-12 gap-x-4 gap-y-12">
-            <div className="text-secondary flex rotate-180 flex-col justify-end gap-2 justify-self-end font-[detail] uppercase [writing-mode:vertical-rl]">
-              {/* <div className="text-secondary">
-                {projectData?.date.slice(0, 4) ?? "-"}
-              </div> */}
-
-              {/* <div className="w-max self-start bg-secondary px-1 leading-none text-black">
-                {projectData?.typeOfProject?.type?.[language] ?? "-"}
-              </div> */}
-
-              <div className="flex justify-between">
-                <div className="text-secondary font-[detail]">
-                  <div className="bg-primary mb-2 inline-block size-3 rounded-full blur-[2px]" />
+          <div className="grid gap-8 md:grid-cols-12 md:gap-x-4 md:gap-y-12">
+            <div className="text-secondary flex flex-col justify-end gap-2 justify-self-end font-[detail] uppercase md:rotate-180 md:[writing-mode:vertical-rl]">
+              <div className="flex flex-col items-end md:flex-row md:justify-between">
+                <div>
+                  <div className="bg-primary mr-2 inline-block size-3 rounded-full blur-[2px] md:m-0 md:mb-2" />
                   {projectData?.location?.city ?? "-"},{" "}
                   {projectData?.location?.country ?? "-"}
                 </div>
-                <div className="text-secondary font-[detail]">
-                  {projectData?.location?.coordinates ?? "-"}
-                </div>
+
+                <div>{projectData?.location?.coordinates ?? "-"}</div>
               </div>
             </div>
 
-            <div className="group relative col-span-10 col-start-2 w-full overflow-hidden rounded-md drop-shadow-[0_0_3px_#050505] select-none">
+            <div className="group relative w-full overflow-hidden rounded-md drop-shadow-[0_0_4px_#070707] select-none md:col-span-10 md:col-start-2">
               <VideoPlayer videoUrl={projectData?.videoUrl} />
             </div>
 
-            <div className="col-start-1 row-span-2 flex flex-col items-end font-[detail] uppercase">
+            <div className="row-span-2 flex flex-col items-end font-[detail] uppercase md:col-start-1">
               <div className="text-secondary w-max">
                 {projectData?.date.slice(0, 4) ?? "-"}
               </div>
@@ -68,14 +87,15 @@ export default function Project() {
               </div>
             </div>
 
-            <div className="col-span-10 col-start-2 flex w-max flex-col items-start">
-              <h2 className="font-[display] text-5xl tracking-tighter uppercase">
+            <div className="flex flex-col items-start md:col-span-10 md:col-start-2">
+              <h2 className="font-[display] text-4xl tracking-tighter uppercase md:text-5xl">
                 {projectData?.title?.[language] || projectData?.title?.es}
               </h2>
-              <div className="flex gap-1 pt-3">
+
+              <div className="flex flex-wrap gap-1 pt-4">
                 {projectData?.roles?.map((role) => (
                   <div
-                    className="border-secondary text-secondary rounded-full px-2 font-[detail] leading-none lowercase"
+                    className="border-secondary-dim text-secondary rounded-full border px-2 font-[detail] leading-none lowercase"
                     key={role._id}
                   >
                     {role.role[language]}
@@ -84,20 +104,52 @@ export default function Project() {
               </div>
             </div>
 
-            <div className="text-secondary col-span-8 col-start-3 flex flex-col gap-4 pb-16 text-xl">
+            <div className="text-secondary flex columns-2 flex-col gap-4 pb-16 text-base md:col-span-6 md:col-start-2">
+              <Line className="-ml-4" wobbliness={0.2} />
               <PortableText value={projectData?.description?.[language]} />
             </div>
 
-            {/* <div className="w-full select-none">
+            {/* {projectData?.links && ( */}
+            <div className="text-end md:col-span-4 md:col-start-8">
+              {projectData?.links && projectData?.linksSectionTitle && (
+                <li className="text-secondary flex items-center justify-end gap-2 font-[detail] text-xs uppercase">
+                  {projectData?.linksSectionTitle[language]}
+                  <span className="w-6">
+                    <Line wobbliness={0.02} />
+                  </span>
+                </li>
+              )}
+              {projectData?.links &&
+                projectData.links.map((link) => (
+                  <a
+                    key={link._key}
+                    className="uppercase"
+                    href={link.url}
+                    target="_blank"
+                  >
+                    <span className="hover:bg-text hover:text-background">
+                      {link.title[language]}
+                    </span>
+                  </a>
+                ))}
               <img
                 src="/img/asterisco.svg"
                 alt=""
-                className="mx-auto size-10 -rotate-12 blur-[0.5px]"
+                className="ml-auto size-14 -rotate-12 blur-[0.5px]"
+              />
+            </div>
+            {/* )} */}
+
+            {/* <div className="w-full select-none md:col-span-12">
+              <img
+                src="/img/asterisco.svg"
+                alt=""
+                className="mx-auto size-14 -rotate-12 blur-[0.5px]"
               />
             </div> */}
 
             {projectData?.acknowledgements && (
-              <div className="col-span-8 col-start-3 flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center gap-4 md:col-span-8 md:col-start-3">
                 {projectData.acknowledgements.map((acknowledgement) => (
                   <div key={acknowledgement._key}>
                     {acknowledgement.link ? (
@@ -121,35 +173,12 @@ export default function Project() {
               </div>
             )}
 
-            {projectData?.links && (
-              <div className="col-span-4 col-start-8 text-end">
-                {projectData?.linksSectionTitle && (
-                  <li className="text-secondary flex items-center justify-end gap-2 font-[detail] text-xs uppercase">
-                    {projectData?.linksSectionTitle[language]}
-                    <span className="bg-secondary inline-block h-[1px] w-6" />
-                  </li>
-                )}
-                {projectData.links.map((link) => (
-                  <a
-                    key={link._key}
-                    className="uppercase"
-                    href={link.url}
-                    target="_blank"
-                  >
-                    <span className="hover:bg-text hover:text-background">
-                      {link.title[language]}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            )}
-
-            <div className="col-span-12 col-start-1">
+            <div className="md:col-span-12 md:col-start-1">
               <ImageGallery slug={projectData?.slug?.current} />
             </div>
 
             {projectData?.credits && (
-              <div className="col-span-12 flex max-w-3xl flex-col items-center gap-4 place-self-center text-center uppercase">
+              <div className="flex max-w-3xl flex-col items-center gap-4 place-self-center text-center uppercase md:col-span-12">
                 {projectData.credits.map((credit) => (
                   <div key={credit._key}>
                     <p className="text-secondary font-[detail] text-xs">
@@ -161,11 +190,10 @@ export default function Project() {
               </div>
             )}
           </div>
-          <img
-            src="/img/linea.svg"
-            alt=""
-            className="mx-auto w-32 select-none"
-          />
+
+          <div className="mx-auto w-40">
+            <Line height={"12"} wobbliness={0.15} />
+          </div>
         </motion.section>
       </AnimatePresence>
 
