@@ -39,7 +39,7 @@ function App() {
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    if (!isAutoplayEnabled || isHovering) return;
+    if (!isAutoplayEnabled || isHovering || location.pathname !== "/") return;
 
     const interval = setInterval(() => {
       const nextIndex = (currentIndex + 1) % data.projects?.length;
