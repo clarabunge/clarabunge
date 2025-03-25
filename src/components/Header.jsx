@@ -24,7 +24,7 @@ export default function Header({ infoIsOpen, setInfoIsOpen }) {
           className={`group hover:bg-text hover:text-background cursor-pointer uppercase transition-all ${
             location.pathname === "/" || location.pathname === "/info"
               ? "text-white"
-              : "invert"
+              : ""
           }`}
           onClick={() => setInfoIsOpen((prev) => !prev)}
         >

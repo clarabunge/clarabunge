@@ -54,11 +54,11 @@ export default function Project() {
               </div>
             </div>
 
-            <div className="group relative col-span-10 col-start-2 w-full overflow-hidden rounded-md select-none">
+            <div className="group relative col-span-10 col-start-2 w-full overflow-hidden rounded-md drop-shadow-[0_0_3px_#050505] select-none">
               <VideoPlayer videoUrl={projectData?.videoUrl} />
             </div>
 
-            <div className="col-start-1 flex flex-col items-end font-[detail] uppercase">
+            <div className="col-start-1 row-span-2 flex flex-col items-end font-[detail] uppercase">
               <div className="text-secondary w-max">
                 {projectData?.date.slice(0, 4) ?? "-"}
               </div>
@@ -68,32 +68,33 @@ export default function Project() {
               </div>
             </div>
 
-            <div className="col-span-10 col-start-2 flex flex-col items-start gap-4">
+            <div className="col-span-10 col-start-2 flex w-max flex-col items-start">
               <h2 className="font-[display] text-5xl tracking-tighter uppercase">
                 {projectData?.title?.[language] || projectData?.title?.es}
               </h2>
-              {/* <div className="w-max self-start bg-secondary px-1 font-[detail] leading-none text-background uppercase">
-                {projectData?.typeOfProject?.type?.[language] ?? "-"}
-              </div> */}
+              <div className="flex gap-1 pt-3">
+                {projectData?.roles?.map((role) => (
+                  <div
+                    className="border-secondary text-secondary rounded-full px-2 font-[detail] leading-none lowercase"
+                    key={role._id}
+                  >
+                    {role.role[language]}
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div>
-              {projectData?.roles?.map((role) => (
-                <div key={role._id}>{role.role[language]}</div>
-              ))}
+            <div className="text-secondary col-span-8 col-start-3 flex flex-col gap-4 pb-16 text-xl">
+              <PortableText value={projectData?.description?.[language]} />
             </div>
 
-            <div className="w-max -rotate-12 justify-self-center select-none">
+            {/* <div className="w-full select-none">
               <img
                 src="/img/asterisco.svg"
                 alt=""
-                className="size-16 blur-[0.5px]"
+                className="mx-auto size-10 -rotate-12 blur-[0.5px]"
               />
-            </div>
-
-            <div className="text-secondary col-span-8 col-start-4 flex flex-col gap-4 pb-16 text-lg">
-              <PortableText value={projectData?.description?.[language]} />
-            </div>
+            </div> */}
 
             {projectData?.acknowledgements && (
               <div className="col-span-8 col-start-3 flex items-center justify-center gap-4">
