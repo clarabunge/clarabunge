@@ -35,7 +35,10 @@ export async function getMainContent() {
 export async function getImageGallery(slug) {
   return client.fetch(
     `*[_type == 'project' && slug.current == $slug][0]{
-        images[]{_key, 'url': asset->url,} 
+        images[]{_key, 
+        'url': asset->url,
+        "dimensions": asset->metadata.dimensions,
+} 
     }`,
     { slug },
   );

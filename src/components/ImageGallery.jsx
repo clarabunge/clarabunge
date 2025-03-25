@@ -37,22 +37,29 @@ export default function ImageGallery({ slug }) {
           />
         )}
       </AnimatePresence>
-      <div className="columns-xs gap-8 px-4 pt-4">
+      <div className="columns-xs gap-8 px-4 pt-4 transition-all duration-300">
         {data.images.map((image) => (
           <div
             key={image._key}
-            className={`${isMobile ? "" : "cursor-pointer"} pb-8`}
+            className={`${isMobile ? "" : "cursor-pointer"} mb-8 break-inside-avoid-column rounded-sm`}
             onClick={() => {
               if (!isMobile) {
                 setCurrentImage(image.url + "?fm=webp");
                 setIsLightboxOpen(true);
               }
             }}
+            style={{
+              backgroundImage: `url(${image.url}?h=10&blur=30&fm=webp)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              aspectRatio: `${image.dimensions.aspectRatio}/1`,
+            }}
           >
             <img
               src={image.url + "?h=1000&fm=webp"}
               alt={image.alt}
               className="w-full rounded-sm"
+              loading="lazy"
             />
           </div>
         ))}
