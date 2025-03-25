@@ -8,6 +8,7 @@ import useLanguage from "./utils/useLanguage.js";
 import VimeoBackground from "./components/VimeoBackground.jsx";
 import Intro from "./components/Intro.jsx";
 import { AnimatePresence, motion } from "motion/react";
+import useIsMobile from "./utils/useIsMobile.jsx";
 
 function App() {
   const [infoIsOpen, setInfoIsOpen] = useState(false);
@@ -22,6 +23,7 @@ function App() {
   const { language } = useLanguage();
   const [introEnded, setIntroEnded] = useState(false);
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   const handleOnLoad = () => {
     setLoadedVideos((prev) => prev + 1);
@@ -122,8 +124,10 @@ function App() {
                   key={video._id}
                   className="grid w-full border-b border-transparent text-base hover:border-white md:grid-cols-4"
                   onMouseEnter={() => {
-                    setIsHovering(true);
-                    handleVideoSelect(video, index);
+                    if (!isMobile) {
+                      setIsHovering(true);
+                      handleVideoSelect(video, index);
+                    }
                   }}
                   onMouseLeave={() => {
                     setIsHovering(false);
