@@ -132,9 +132,10 @@ export default function IntroAnimation({ status, videoWidth, videoHeight }) {
         // Update node positions for floating effect
         nodes.forEach((node) => {
           if (!node.exiting) {
-            const newX = node.x + Math.sin(time + node.id) * node.offsetX * 0.5;
+            const newX =
+              node.x + Math.sin(time + node.id) * node.offsetX * 0.35;
             const newY =
-              node.y + Math.cos(time + node.id * 0.7) * node.offsetY * 0.5;
+              node.y + Math.cos(time + node.id * 0.7) * node.offsetY * 0.35;
 
             nodePositions.current[node.id] = { x: newX, y: newY };
           }
