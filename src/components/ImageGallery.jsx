@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useImageGallery } from "../utils/useData";
 import { motion, AnimatePresence } from "motion/react";
 import useIsMobile from "../utils/useIsMobile";
+import Lightbox from "./Lightbox";
 
 export default function ImageGallery({ slug }) {
   const { data, isLoading, error } = useImageGallery(slug);
@@ -29,20 +30,11 @@ export default function ImageGallery({ slug }) {
     <>
       <AnimatePresence>
         {isLightboxOpen && (
-          <motion.div
+          <Lightbox
             key="lightbox"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="no-doc-scroll fixed inset-0 z-100 flex h-screen w-screen cursor-zoom-out items-center justify-center backdrop-brightness-20 backdrop-grayscale-100"
-            onClick={() => setIsLightboxOpen(false)}
-          >
-            <img
-              src={currentImage}
-              alt=""
-              className="h-auto max-h-[95vh] w-auto max-w-[95vw] rounded-sm"
-            />
-          </motion.div>
+            currentImage={currentImage}
+            setIsLightboxOpen={setIsLightboxOpen}
+          />
         )}
       </AnimatePresence>
       <div className="columns-xs gap-8 px-4 pt-4">
