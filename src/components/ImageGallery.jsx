@@ -13,7 +13,7 @@ export default function ImageGallery({ slug }) {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center">
-        <p>Loading...</p>
+        <div className="h-12 w-12 animate-spin rounded-full border-2 border-solid border-white border-t-transparent"></div>
       </div>
     );
   }
