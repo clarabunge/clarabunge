@@ -63,6 +63,10 @@ function App() {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    setTimeout(() => setIntroEnded(true), 15000);
+  }, [setIntroEnded]);
+
   if (error || introUrlError) {
     return (
       <div className="flex items-center justify-center">
