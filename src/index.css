@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #e9e9e9;
-  --color-text: #000000;
+  --color-background: #020202;
+  --color-text: #e9e9e9;
   /* --color-primary: #d62848; */
   --color-primary: #e08311;
-  --color-secondary: #585652;
-  --color-secondary-dim: #a09e99;
+  --color-secondary: #b0ada8;
+  --color-secondary-dim: #8e8c88;
 }
 
 @font-face {
   font-family: "display";
-  /* src: url("/fonts/Inter_24pt-Black.ttf") format("truetype"); */
+  src: url("/fonts/Inter_24pt-Black.ttf") format("truetype");
   src: url("/fonts/ArchivoBlack-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "detail";
   /* src: url("/fonts/XanhMono-Regular.ttf"); */
-  /* src: url("/fonts/mplus-1m-light.otf") format("opentype"); */
-  /* src: url("/fonts/InstrumentSerif-Regular.ttf") format("truetype"); */
+  src: url("/fonts/mplus-1m-light.otf") format("opentype");
+  src: url("/fonts/InstrumentSerif-Regular.ttf") format("truetype");
   src: url("/fonts/DraftingMono-Light.ttf") format("truetype");
 }
 
