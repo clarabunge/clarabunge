@@ -45,11 +45,11 @@ export default function ImageGallery({ slug }) {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="columns-3xs gap-4">
+      <div className="columns-xs gap-8 px-4 pt-4">
         {data.images.map((image) => (
           <div
             key={image._key}
-            className={`${isMobile ? "" : "cursor-pointer"} pb-4`}
+            className={`${isMobile ? "" : "cursor-pointer"} pb-8`}
             onClick={() => {
               if (!isMobile) {
                 setCurrentImage(image.url + "?fm=webp");
