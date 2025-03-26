@@ -48,6 +48,17 @@ const headerVariants = {
   },
 };
 
+const lineVariants = {
+  hidden: { width: 0 },
+  visible: {
+    width: "100%",
+    transition: {
+      duration: 0.5,
+      ease: "easeInOut",
+    },
+  },
+};
+
 function App() {
   const [infoIsOpen, setInfoIsOpen] = useState(false);
   const {
@@ -167,7 +178,7 @@ function App() {
                   <motion.div variants={itemVariants} key={video._id}>
                     <NavLink
                       to={video.slug.current}
-                      className="grid w-full border-b border-transparent hover:border-white md:grid-cols-4"
+                      className="group relative grid w-full pb-[1px] md:grid-cols-4"
                       onMouseEnter={() => {
                         if (!isMobile) {
                           setIsHovering(true);
@@ -203,6 +214,15 @@ function App() {
                             video.typeOfProject.type.es
                           : ""}
                       </div>
+                      <motion.div
+                        variants={lineVariants}
+                        animate={
+                          isHovering && currentVideo?._id === video._id
+                            ? "visible"
+                            : "hidden"
+                        }
+                        className="absolute bottom-0 h-[1px] w-0 bg-white group-hover:w-full"
+                      />
                     </NavLink>
                   </motion.div>
                 ))}
