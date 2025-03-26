@@ -150,6 +150,7 @@ function App() {
                 <VimeoBackground
                   key={video._id}
                   videoUrl={video.videoUrl}
+                  imgUrl={video.image.url}
                   handleOnLoad={handleOnLoad}
                   hidden={currentVideo?._id !== video._id}
                 />
