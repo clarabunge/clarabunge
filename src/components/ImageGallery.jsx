@@ -39,7 +39,9 @@ export default function ImageGallery({ slug }) {
       </AnimatePresence>
       <div className="columns-1 gap-8 pt-4 transition-all duration-300 sm:columns-2 md:columns-3 md:px-4 xl:columns-4 2xl:columns-5">
         {data.images.map((image) => (
-          <div
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             key={image._key}
             className={`${isMobile ? "" : "cursor-pointer"} mb-8 break-inside-avoid-column rounded-sm`}
             onClick={() => {
@@ -65,7 +67,7 @@ export default function ImageGallery({ slug }) {
                 e.target.style.opacity = 1;
               }}
             />
-          </div>
+          </motion.div>
         ))}
       </div>
     </>

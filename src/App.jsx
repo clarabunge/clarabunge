@@ -10,6 +10,44 @@ import Intro from "./components/Intro.jsx";
 import { AnimatePresence, motion } from "motion/react";
 import useIsMobile from "./utils/useIsMobile.jsx";
 
+const listVariants = {
+  hidden: {
+    scale: 0,
+  },
+  visible: {
+    scale: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 100,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "tween",
+      duration: 0.7,
+    },
+  },
+};
+
+const headerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { duration: 1, type: "tween", delay: 0.3 },
+  },
+};
+
 function App() {
   const [infoIsOpen, setInfoIsOpen] = useState(false);
   const {
@@ -98,7 +136,7 @@ function App() {
       </AnimatePresence>
 
       {!isLoading && (
-        <div className={`${introEnded ? "" : "hidden"}`}>
+        <>
           {/* {!allVideosLoaded && (
             <div className="absolute inset-0 z-100 flex items-center justify-center bg-black">
               LOADING {loadedVideos}/{data.projects?.length}
@@ -117,52 +155,68 @@ function App() {
                 />
               ))}
             </div>
-            <div className="fixed bottom-0 flex w-full flex-col justify-end p-4 text-base md:p-8 md:text-xs">
-              {data.projects?.map((video, index) => (
-                <NavLink
-                  to={video.slug.current}
-                  key={video._id}
-                  className="grid w-full border-b border-transparent hover:border-white md:grid-cols-4"
-                  onMouseEnter={() => {
-                    if (!isMobile) {
-                      setIsHovering(true);
-                      handleVideoSelect(video, index);
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    setIsHovering(false);
-                  }}
-                >
-                  <div className="font-[detail] text-white max-md:hidden">
-                    {currentVideo?._id === video._id
-                      ? video.location.coordinates
-                      : ""}
-                  </div>
-                  <h2
-                    className={
-                      currentVideo?._id === video._id
-                        ? "border-white text-white max-md:border-b"
-                        : "text-secondary-dim"
-                    }
-                  >
-                    {video.title[language] || video.title.es}
-                  </h2>
-                  <div className="font-[detail] text-white max-md:hidden">
-                    {currentVideo?._id === video._id
-                      ? video.date.split("-")[0]
-                      : ""}
-                  </div>
-                  <div className="font-[detail] text-white max-md:hidden">
-                    {currentVideo?._id === video._id
-                      ? video.typeOfProject.type[language] ||
-                        video.typeOfProject.type.es
-                      : ""}
-                  </div>
-                </NavLink>
-              ))}
-            </div>
+            {introEnded && (
+              <motion.div
+                variants={listVariants}
+                initial="hidden"
+                animate="visible"
+                className="fixed bottom-0 flex w-full flex-col justify-end p-4 text-base md:p-8 md:text-xs"
+              >
+                {data.projects?.map((video, index) => (
+                  <motion.div variants={itemVariants} key={video._id}>
+                    <NavLink
+                      to={video.slug.current}
+                      className="grid w-full border-b border-transparent hover:border-white md:grid-cols-4"
+                      onMouseEnter={() => {
+                        if (!isMobile) {
+                          setIsHovering(true);
+                          handleVideoSelect(video, index);
+                        }
+                      }}
+                      onMouseLeave={() => {
+                        setIsHovering(false);
+                      }}
+                    >
+                      <div className="font-[detail] text-white max-md:hidden">
+                        {currentVideo?._id === video._id
+                          ? video.location.coordinates
+                          : ""}
+                      </div>
+                      <h2
+                        className={
+                          currentVideo?._id === video._id
+                            ? "border-white text-white max-md:border-b"
+                            : "text-secondary-dim"
+                        }
+                      >
+                        {video.title[language] || video.title.es}
+                      </h2>
+                      <div className="font-[detail] text-white max-md:hidden">
+                        {currentVideo?._id === video._id
+                          ? video.date.split("-")[0]
+                          : ""}
+                      </div>
+                      <div className="font-[detail] text-white max-md:hidden">
+                        {currentVideo?._id === video._id
+                          ? video.typeOfProject.type[language] ||
+                            video.typeOfProject.type.es
+                          : ""}
+                      </div>
+                    </NavLink>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
           </section>
-          <Header infoIsOpen={infoIsOpen} setInfoIsOpen={setInfoIsOpen} />
+          {introEnded && (
+            <motion.div
+              variants={headerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <Header infoIsOpen={infoIsOpen} setInfoIsOpen={setInfoIsOpen} />
+            </motion.div>
+          )}
           <AnimatePresence>
             <Routes location={location} key={location.pathname}>
               <Route path="/" element={null} />
@@ -170,7 +224,7 @@ function App() {
             </Routes>
           </AnimatePresence>
           <AnimatePresence>{infoIsOpen && <Info key="info" />}</AnimatePresence>
-        </div>
+        </>
       )}
     </>
   );

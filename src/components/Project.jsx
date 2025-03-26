@@ -82,9 +82,13 @@ export default function Project() {
             </div>
 
             <div className="flex items-start justify-between md:col-span-10 md:col-start-2">
-              <h2 className="font-[display] text-4xl tracking-tighter uppercase md:text-5xl">
+              <motion.h2
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, transition: { duration: 1 } }}
+                className="font-[display] text-4xl tracking-tighter uppercase md:text-5xl"
+              >
                 {projectData?.title?.[language] || projectData?.title?.es}
-              </h2>
+              </motion.h2>
 
               <div className="flex flex-wrap gap-1 pt-4">
                 {projectData?.roles?.map((role) => (
@@ -163,16 +167,20 @@ export default function Project() {
             </div>
 
             {projectData?.credits && (
-              <div className="flex max-w-3xl flex-col items-center gap-4 place-self-center text-center uppercase md:col-span-12">
+              <motion.div className="flex max-w-3xl flex-col items-center gap-4 place-self-center text-center uppercase md:col-span-12">
                 {projectData.credits.map((credit) => (
-                  <div key={credit._key}>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1, transition: { duration: 1 } }}
+                    key={credit._key}
+                  >
                     <p className="text-secondary font-[detail] text-xs">
                       {credit.role[language]}
                     </p>
                     <p>{credit.name}</p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             )}
           </div>
 
