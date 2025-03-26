@@ -58,7 +58,7 @@ export default function Project() {
             <div className="text-secondary flex flex-col justify-end gap-2 justify-self-end font-[detail] uppercase md:rotate-180 md:[writing-mode:vertical-rl]">
               <div className="flex flex-col items-end md:flex-row md:justify-between">
                 <div>
-                  <div className="bg-primary mr-2 inline-block size-3 rounded-full blur-[2px] md:m-0 md:mb-2" />
+                  <div className="bg-primary mr-2 inline-block size-2 rounded-full blur-[2px] md:m-0 md:mb-2" />
                   {projectData?.location?.city ?? "-"},{" "}
                   {projectData?.location?.country ?? "-"}
                 </div>
@@ -91,6 +91,18 @@ export default function Project() {
               </motion.h2>
 
               <div className="flex flex-wrap gap-1 pt-4">
+                <svg
+                  id="Layer_2"
+                  data-name="Layer 2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 50.16 38.46"
+                  fill="var(--color-secondary-dim)"
+                  className="mr-1 size-3"
+                >
+                  <g id="Layer_1-2" data-name="Layer 1">
+                    <path d="M11.62.5c7.31-2.15,9.34,3.23,13.45,3.47,3.74.21,8.03-2.53,13.95-1.75,26.28,3.48,1.55,42.05-27.41,35.49-17.25-3.91-13.6-33.22.01-37.21ZM20.17,4.17c-9.11-8.11-29.21,27.38-2.8,29.95,6.95.68,16.34-3.65,20.79-8.98-5.45-1.25-8.18,3.43-14.94,3.14-2.9-.12-8.62-1.65-10.12-4.09-4.72-7.7,9.93-17.47,7.06-20.02Z" />
+                  </g>
+                </svg>
                 {projectData?.roles?.map((role) => (
                   <div
                     className="border-secondary-dim text-secondary rounded-full border px-2 font-[detail] leading-none lowercase"
@@ -130,11 +142,23 @@ export default function Project() {
                   </a>
                 ))}
 
-              <img
+              {/* <img
                 src="/img/asterisco.svg"
                 alt=""
                 className="ml-auto size-14 -rotate-12 blur-[0.5px]"
-              />
+              /> */}
+              <svg
+                className="ml-auto size-10 pt-2 blur-[0.5px]"
+                id="Layer_2"
+                data-name="Layer 2"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 146.05 150.17"
+                fill="var(--color-primary)"
+              >
+                <g id="Layer_1-2" data-name="Layer 1">
+                  <path d="M81.95,59.93l25.81-13.15,38.13-28.82c1.43,1.46-7.31,12.12-8.96,14.01-11.64,13.4-27.99,23.86-42.95,33.05-3.09,1.9-14.13,4.21-5.12,6.93,11.96,3.62,27.5,4.89,38.44,9.57,3.52,1.51,9.32,3.5,8.59,8.38-20.39.27-40.07-4.63-59.96-8-1.12,9.92-7.18,64.93-13.03,67.96-3.48,1.8-4.5-5.12-4.78-7.16-2.71-19.8,4.49-39.24,5.79-58.78L6.09,111.08C4.15,113.14-.04,110.16,0,108.91c.22-6.91,49.14-30.13,57.92-33.01l-34.64-16.29c-4.51-1.67-7.72-8.24-2.24-9.65,3.81-.98,39.58,14.62,46.87,15.98C70.48,57.27,83.16.3,88.93,0c3.24-.17,3.16,8.59,3.02,10.9-.45,7.7-12.42,46.18-10,49.03Z" />
+                </g>
+              </svg>
             </div>
 
             {projectData?.acknowledgements && (
