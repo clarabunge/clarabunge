@@ -152,14 +152,14 @@ export default function Project() {
                         <img
                           src={acknowledgement.image.url + "?w20&fm=webp"}
                           alt=""
-                          className="bg-background max-w-[150px]"
+                          className="w-[150px] bg-white md:max-w-[200px]"
                         />
                       </a>
                     ) : (
                       <img
                         src={acknowledgement.image.url + "?h=500&fm=webp"}
                         alt=""
-                        className="bg-background max-w-[300px]"
+                        className="w-[150px] bg-white md:max-w-[200px]"
                       />
                     )}
                   </div>
