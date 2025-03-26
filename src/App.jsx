@@ -117,7 +117,7 @@ function App() {
                 />
               ))}
             </div>
-            <div className="flex h-screen w-full flex-col justify-end p-4 text-base md:p-8 md:text-xs">
+            <div className="fixed bottom-0 flex w-full flex-col justify-end p-4 text-base md:p-8 md:text-xs">
               {data.projects?.map((video, index) => (
                 <NavLink
                   to={video.slug.current}
