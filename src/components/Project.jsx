@@ -121,7 +121,7 @@ export default function Project() {
                     href={link.url}
                     target="_blank"
                   >
-                    <span className="hover:bg-text hover:text-background">
+                    <span className="hover:bg-text hover:text-background transition-colors">
                       {link.title[language]}
                     </span>
                   </a>

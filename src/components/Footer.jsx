@@ -13,7 +13,7 @@ export default function Footer({ prevProject, nextProject }) {
         <div className="border-background flex items-center justify-between border-b text-sm">
           <NavLink
             to={`/${prevProject?.slug?.current}`}
-            className="hover:bg-primary flex w-full cursor-pointer items-center gap-2 py-1"
+            className="hover:bg-primary flex w-full cursor-pointer items-center gap-2 py-1 transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -28,13 +28,13 @@ export default function Footer({ prevProject, nextProject }) {
           </NavLink>
           <NavLink
             to="/"
-            className="hover:bg-primary border-background w-full cursor-pointer border-x py-1 text-center"
+            className="hover:bg-primary border-background w-full cursor-pointer border-x py-1 text-center transition-colors"
           >
             {language === "en" ? "HOME" : "INICIO"}
           </NavLink>
           <NavLink
             to={`/${nextProject?.slug?.current}`}
-            className="hover:bg-primary flex w-full cursor-pointer items-center justify-end gap-2 py-1"
+            className="hover:bg-primary flex w-full cursor-pointer items-center justify-end gap-2 py-1 transition-colors"
           >
             <span>{language === "en" ? "NEXT" : "SIGUIENTE"}</span>
             <svg
@@ -52,7 +52,24 @@ export default function Footer({ prevProject, nextProject }) {
         <div className="flex w-full items-center gap-2 font-[detail] text-[0.7rem] opacity-60">
           <p>Clara Bunge &copy; {new Date().getFullYear()}</p>
           <div className="bg-background size-1 rounded-full" />
-          <p>website x astrosuka + sofja</p>
+          <p>
+            website x{" "}
+            <a
+              href="https://www.astrosuka.xyz/"
+              target="_blank"
+              className="hover:bg-background hover:text-text transition-colors"
+            >
+              astrosuka
+            </a>{" "}
+            +{" "}
+            <a
+              href="https://www.sofja.uno/"
+              target="_blank"
+              className="hover:bg-background hover:text-text transition-colors"
+            >
+              sofja
+            </a>
+          </p>
         </div>
       </div>
     </div>
