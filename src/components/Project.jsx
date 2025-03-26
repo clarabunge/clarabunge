@@ -143,7 +143,7 @@ export default function Project() {
             </div> */}
 
             {projectData?.acknowledgements && (
-              <div className="flex items-center justify-center gap-4 md:col-span-8 md:col-start-3">
+              <div className="flex flex-wrap items-center justify-center gap-4 md:col-span-8 md:col-start-3">
                 {projectData.acknowledgements.map((acknowledgement) => (
                   <div key={acknowledgement._key}>
                     {acknowledgement.link ? (
