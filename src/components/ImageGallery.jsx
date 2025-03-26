@@ -58,8 +58,12 @@ export default function ImageGallery({ slug }) {
             <img
               src={image.url + "?h=1000&fm=webp"}
               alt={image.alt}
-              className="w-full rounded-sm"
+              className="w-full rounded-sm transition-opacity duration-300"
               loading="lazy"
+              style={{ opacity: 0 }}
+              onLoad={(e) => {
+                e.target.style.opacity = 1;
+              }}
             />
           </div>
         ))}
