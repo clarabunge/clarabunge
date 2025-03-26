@@ -11,21 +11,16 @@
 
 @font-face {
   font-family: "display";
-  src: url("/fonts/Inter_24pt-Black.ttf") format("truetype");
   src: url("/fonts/ArchivoBlack-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "detail";
-  /* src: url("/fonts/XanhMono-Regular.ttf"); */
-  src: url("/fonts/mplus-1m-light.otf") format("opentype");
-  src: url("/fonts/InstrumentSerif-Regular.ttf") format("truetype");
   src: url("/fonts/DraftingMono-Light.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "body";
-  /* src: url("/fonts/Inter_18pt-Regular.ttf"); */
   src: url("/fonts/Absans-Regular.woff2") format("woff2");
 }
 
