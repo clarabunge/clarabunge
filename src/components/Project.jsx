@@ -81,7 +81,7 @@ export default function Project() {
               </div>
             </div>
 
-            <div className="flex flex-col items-start md:col-span-10 md:col-start-2">
+            <div className="flex items-start justify-between md:col-span-10 md:col-start-2">
               <h2 className="font-[display] text-4xl tracking-tighter uppercase md:text-5xl">
                 {projectData?.title?.[language] || projectData?.title?.es}
               </h2>
@@ -103,7 +103,6 @@ export default function Project() {
               <PortableText value={projectData?.description?.[language]} />
             </div>
 
-            {/* {projectData?.links && ( */}
             <div className="text-end md:col-span-4 md:col-start-8">
               {projectData?.links && projectData?.linksSectionTitle && (
                 <li className="text-secondary flex items-center justify-end gap-2 font-[detail] text-xs uppercase">
@@ -126,21 +125,13 @@ export default function Project() {
                     </span>
                   </a>
                 ))}
+
               <img
                 src="/img/asterisco.svg"
                 alt=""
                 className="ml-auto size-14 -rotate-12 blur-[0.5px]"
               />
             </div>
-            {/* )} */}
-
-            {/* <div className="w-full select-none md:col-span-12">
-              <img
-                src="/img/asterisco.svg"
-                alt=""
-                className="mx-auto size-14 -rotate-12 blur-[0.5px]"
-              />
-            </div> */}
 
             {projectData?.acknowledgements && (
               <div className="flex flex-wrap items-center justify-center gap-4 md:col-span-8 md:col-start-3">
