@@ -37,7 +37,7 @@ export default function ImageGallery({ slug }) {
           />
         )}
       </AnimatePresence>
-      <div className="columns-xs gap-8 pt-4 transition-all duration-300 md:px-4">
+      <div className="columns-1 gap-8 pt-4 transition-all duration-300 sm:columns-2 md:columns-3 md:px-4 xl:columns-4 2xl:columns-5">
         {data.images.map((image) => (
           <div
             key={image._key}
