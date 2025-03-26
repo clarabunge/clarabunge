@@ -10,7 +10,7 @@ export default function Footer({ prevProject, nextProject }) {
       style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
     >
       <div className="bg-secondary fixed bottom-0 flex h-20 w-full flex-col justify-center gap-2 px-4 text-black">
-        <div className="border-background flex items-center justify-between border-b text-sm">
+        <div className="border-background flex items-center justify-between border-b text-xs sm:text-sm">
           <NavLink
             to={`/${prevProject?.slug?.current}`}
             className="hover:bg-primary flex w-full cursor-pointer items-center gap-2 py-1 transition-colors"
@@ -49,11 +49,11 @@ export default function Footer({ prevProject, nextProject }) {
           </NavLink>
         </div>
 
-        <div className="flex w-full items-center gap-2 font-[detail] text-[0.7rem] opacity-60">
+        <div className="flex w-full flex-wrap items-center gap-2 font-[detail] text-[0.7rem] opacity-80">
           <p>Clara Bunge &copy; {new Date().getFullYear()}</p>
           <div className="bg-background size-1 rounded-full" />
           <p>
-            website x{" "}
+            webs x{" "}
             <a
               href="https://www.astrosuka.xyz/"
               target="_blank"
