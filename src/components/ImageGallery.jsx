@@ -42,6 +42,7 @@ export default function ImageGallery({ slug }) {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            whileHover={{ scale: 1.025 }}
             key={image._key}
             className={`${isMobile ? "" : "cursor-pointer"} mb-8 break-inside-avoid-column rounded-sm`}
             onClick={() => {
