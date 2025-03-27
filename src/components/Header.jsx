@@ -35,13 +35,14 @@ export default function Header({ infoIsOpen, setInfoIsOpen }) {
           </g>
         </svg>
         <button
-          className={`group hover:bg-text hover:text-background cursor-pointer uppercase transition-all ${
+          className={`group hover:text-background relative cursor-pointer uppercase transition-all ${
             location.pathname === "/" || location.pathname === "/info"
               ? "text-white"
               : ""
           }`}
           onClick={() => setInfoIsOpen((prev) => !prev)}
         >
+          <div className="bg-text absolute bottom-0 -z-10 h-full w-0 transition-all duration-400 md:group-hover:w-full" />
           {infoIsOpen ? close[language] : "bio"}
         </button>
         <LanguageButton />

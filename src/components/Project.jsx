@@ -132,11 +132,12 @@ export default function Project() {
                 projectData.links.map((link) => (
                   <a
                     key={link._key}
-                    className="uppercase"
+                    className="group relative uppercase"
                     href={link.url}
                     target="_blank"
                   >
-                    <span className="hover:bg-text hover:text-background transition-colors">
+                    <div className="bg-text absolute bottom-0 left-0 h-full w-0 transition-all duration-400 group-hover:w-full" />
+                    <span className="hover:text-background relative z-10 transition-colors">
                       {link.title[language]}
                     </span>
                   </a>
