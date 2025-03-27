@@ -81,11 +81,11 @@ export default function Project() {
               </div>
             </div>
 
-            <div className="flex items-start justify-between md:col-span-10 md:col-start-2">
+            <div className="flex flex-wrap items-start justify-between md:col-span-10 md:col-start-2">
               <motion.h2
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1, transition: { duration: 1 } }}
-                className="font-[display] text-4xl tracking-tighter uppercase md:text-5xl"
+                className="font-[display] text-3xl tracking-tighter uppercase md:text-5xl"
               >
                 {projectData?.title?.[language] || projectData?.title?.es}
               </motion.h2>
