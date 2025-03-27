@@ -13,8 +13,9 @@ export default function Footer({ prevProject, nextProject }) {
         <div className="border-background flex items-center justify-between border-b text-xs sm:text-sm">
           <NavLink
             to={`/${prevProject?.slug?.current}`}
-            className="hover:bg-primary flex w-full cursor-pointer items-center gap-2 py-1 transition-colors"
+            className="group relative flex w-full cursor-pointer items-center gap-2 py-1 transition-colors"
           >
+            <div className="bg-primary absolute bottom-0 left-0 -z-10 h-0 w-full transition-all duration-300 md:group-hover:h-full" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="16px"
@@ -28,14 +29,16 @@ export default function Footer({ prevProject, nextProject }) {
           </NavLink>
           <NavLink
             to="/"
-            className="hover:bg-primary border-background w-full cursor-pointer border-x py-1 text-center transition-colors"
+            className="group border-background relative w-full cursor-pointer border-x py-1 text-center transition-colors"
           >
+            <div className="bg-primary absolute bottom-0 left-0 -z-10 h-0 w-full transition-all duration-300 md:group-hover:h-full" />
             {language === "en" ? "HOME" : "INICIO"}
           </NavLink>
           <NavLink
             to={`/${nextProject?.slug?.current}`}
-            className="hover:bg-primary flex w-full cursor-pointer items-center justify-end gap-2 py-1 transition-colors"
+            className="group relative flex w-full cursor-pointer items-center justify-end gap-2 py-1 transition-colors"
           >
+            <div className="bg-primary absolute bottom-0 left-0 -z-10 h-0 w-full transition-all duration-300 md:group-hover:h-full" />
             <span>{language === "en" ? "NEXT" : "SIGUIENTE"}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -52,24 +55,28 @@ export default function Footer({ prevProject, nextProject }) {
         <div className="flex w-full flex-wrap items-center gap-2 font-[detail] text-[0.7rem] opacity-80">
           <p>Clara Bunge &copy; {new Date().getFullYear()}</p>
           <div className="bg-background size-1 rounded-full" />
-          <p>
-            webs x{" "}
+          <p>web x </p>
+          <div className="group relative flex gap-1">
+            <div className="bg-background absolute top-0 left-0 -z-10 h-full w-0 transition-all duration-300 group-hover:w-full" />
             <a
               href="https://www.astrosuka.xyz/"
               target="_blank"
-              className="hover:bg-background hover:text-text transition-colors"
+              className="hover:text-text transition-colors duration-400"
             >
               astrosuka
-            </a>{" "}
-            +{" "}
+            </a>
+          </div>{" "}
+          +{" "}
+          <div className="group relative flex gap-1">
+            <div className="bg-background absolute top-0 left-0 -z-10 h-full w-0 transition-all duration-300 group-hover:w-full" />
             <a
               href="https://www.sofja.uno/"
               target="_blank"
-              className="hover:bg-background hover:text-text transition-colors"
+              className="hover:text-text transition-colors duration-400"
             >
               sofja
             </a>
-          </p>
+          </div>
         </div>
       </div>
     </div>
