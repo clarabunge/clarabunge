@@ -9,6 +9,11 @@
   --color-secondary-dim: #8e8c88;
 }
 
+::selection {
+  background-color: var(--color-text);
+  color: var(--color-background);
+}
+
 @font-face {
   font-family: "display";
   src: url("/fonts/ArchivoBlack-Regular.ttf") format("truetype");
