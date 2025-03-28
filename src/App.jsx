@@ -189,7 +189,7 @@ function App() {
                         setIsHovering(false);
                       }}
                     >
-                      <div className="font-[detail] text-white max-md:hidden">
+                      <div className="hidden font-[detail] text-white md:block">
                         {currentVideo?._id === video._id
                           ? video.location.coordinates
                           : ""}
@@ -197,18 +197,18 @@ function App() {
                       <h2
                         className={
                           currentVideo?._id === video._id
-                            ? "border-white text-white max-md:border-b"
+                            ? "border-b border-white text-white md:border-none"
                             : "text-secondary-dim"
                         }
                       >
                         {video.title[language] || video.title.es}
                       </h2>
-                      <div className="font-[detail] text-white max-md:hidden">
+                      <div className="hidden font-[detail] text-white md:block">
                         {currentVideo?._id === video._id
                           ? video.date.split("-")[0]
                           : ""}
                       </div>
-                      <div className="font-[detail] text-white max-md:hidden">
+                      <div className="hidden font-[detail] text-white md:block">
                         {currentVideo?._id === video._id
                           ? video.typeOfProject.type[language] ||
                             video.typeOfProject.type.es
