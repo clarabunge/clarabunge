@@ -91,18 +91,6 @@ export default function Project() {
               </motion.h2>
 
               <div className="flex flex-wrap gap-1 pt-4">
-                <svg
-                  id="Layer_2"
-                  data-name="Layer 2"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 50.16 38.46"
-                  fill="var(--color-secondary-dim)"
-                  className="mr-1 size-3"
-                >
-                  <g id="Layer_1-2" data-name="Layer 1">
-                    <path d="M11.62.5c7.31-2.15,9.34,3.23,13.45,3.47,3.74.21,8.03-2.53,13.95-1.75,26.28,3.48,1.55,42.05-27.41,35.49-17.25-3.91-13.6-33.22.01-37.21ZM20.17,4.17c-9.11-8.11-29.21,27.38-2.8,29.95,6.95.68,16.34-3.65,20.79-8.98-5.45-1.25-8.18,3.43-14.94,3.14-2.9-.12-8.62-1.65-10.12-4.09-4.72-7.7,9.93-17.47,7.06-20.02Z" />
-                  </g>
-                </svg>
                 {projectData?.roles?.map((role) => (
                   <div
                     className="border-secondary-dim text-secondary rounded-full border px-2 font-[detail] leading-none lowercase"
