@@ -160,7 +160,7 @@ function App() {
               {data.projects?.map((video, index) => (
                 <VimeoBackground
                   key={video._id}
-                  videoUrl={video.videoUrl}
+                  videoUrl={video.previewUrl}
                   imgUrl={video.image.url}
                   handleOnLoad={handleOnLoad}
                   hidden={currentVideo?._id !== video._id}
